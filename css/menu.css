@@ -1,6 +1,4 @@
-/* -------------------------
-   GLOBAL STYLES
-------------------------- */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,9 +15,7 @@ ul {
     padding-left: 20px;
 }
 
-/* -------------------------
-   HEADER & NAVIGATION
-------------------------- */
+
 header {
     background: #e2c2b3;
     color: white;
@@ -54,9 +50,9 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* -------------------------
+/* 
    MAIN CONTENT
-------------------------- */
+*/
 main {
     padding: 20px;
 }
@@ -69,11 +65,11 @@ article {
     margin-bottom: 30px;
 }
 
-/* -------------------------
-   FANCY DROPDOWN STYLE
-------------------------- */
+/* 
+   DROPDOWN STYLE
+ */
 
-/* Remove default arrow indicator */
+
 details summary {
     list-style: none;
 }
@@ -91,13 +87,13 @@ details summary {
     position: relative;
 }
 
-/* Hover effect */
+
 details summary:hover {
     background: linear-gradient(135deg, #e2c2b3, #403234);
     transform: translateY(-2px);
 }
 
-/* Custom arrow */
+
 details summary::after {
     content: "˅";
     position: absolute;
@@ -106,12 +102,12 @@ details summary::after {
     transition: transform 0.3s ease;
 }
 
-/* Rotate arrow when open */
+
 details[open] summary::after {
     transform: rotate(180deg);
 }
 
-/* Dropdown content box */
+
 details > ul,
 details > div,
 details > details {
@@ -147,9 +143,9 @@ details details summary:hover {
     transform: translateX(3px);
 }
 
-/* -------------------------
+/* 
    LIST ITEMS (Menu Items)
-------------------------- */
+ */
 details ul li {
     margin-bottom: 12px;
     padding: 10px 12px;
@@ -164,7 +160,7 @@ details ul li:hover {
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
-/* Horizontal separator */
+
 hr {
     border: none;
     border-top: 1px solid #ddd;
