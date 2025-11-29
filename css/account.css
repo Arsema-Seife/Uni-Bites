@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(135deg, #e0bbff, #ffc0cb);
+  overflow: hidden;
+}
+
+/* container */
+.wrapper {
+  width: 90%;
+  height: 80vh;
+  display: flex;
+  position: relative;
+  transition: 1s ease-in-out;
+}
+
+/* panels */
+.panel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  transition: 1s ease-in-out;
+}
+
+/* when login chosen → right expands */
+.wrapper.show-login .right-panel {
+  width: 70%;
+}
+.wrapper.show-login .left-panel {
+  width: 30%;
+  filter: blur(6px) brightness(0.4);
+}
+
+/* when register chosen → left expands */
+.wrapper.show-register .left-panel {
+  width: 70%;
+}
+.wrapper.show-register .right-panel {
+  width: 30%;
+  filter: blur(6px) brightness(0.4);
+}
+
+/* buttons */
+.btn {
+  padding: 14px 35px;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  color: white;
+  background: linear-gradient(45deg, #ee82ee, #ffb6c1);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* forms base */
+.form {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 350px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.8s ease;
+}
