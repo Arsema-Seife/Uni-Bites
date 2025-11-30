@@ -1,12 +1,12 @@
-/* General Page */
+/*General Page Styles*/
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
 }
 
-/* Navigation */
+/*Navigation*/
 .nav {
   background-color: #403234;
   color: white;
@@ -44,11 +44,11 @@ body {
 .nav-links a.active {
   font-weight: bold;
   background-color: #E2C2B3; /* boxed background for active */
-  color: #4B4443; /* dark text inside box for contrast */
-  text-decoration: none; /* remove underline */
+  color: #4B4443; /* dark text inside box */
+  text-decoration: none;
 }
 
-/* Container */
+/*Container*/
 .account-container {
   max-width: 700px;
   margin: 20px auto;
@@ -57,7 +57,7 @@ body {
   border-radius: 8px;
 }
 
-/* Profile Card */
+/*Profile Card*/
 .profile-card {
   padding: 15px;
   border: 1px solid #ddd;
@@ -110,33 +110,105 @@ body {
   background-color: #3a3634;
 }
 
-/* Settings Card */
-.settings-card {
-  border: 1px solid #ddd;
+/* Settings List */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Card */
+.settings-item-card {
+  background-color: #F5DCC8; /* lighter than #E2C2B3 */
   border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.settings-item {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
-  text-align:center;
-  background-color: #eee;
-  border: none;
-  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 8px #403234;
   cursor: pointer;
-  transition: background-color 0.3s;
-  box-shadow: #555;
+  transition: box-shadow 0.3s, transform 0.3s;
+  position: relative;
 }
 
-.settings-item:hover {
-  background-color: #ddd;
+/* Only hide toggle checkboxes */
+.toggle-checkbox {
+  display: none;
 }
 
-/* Stats Grid */
+/* Label (title of card) */
+.settings-item-card label[for] {
+  font-weight: bold;
+  color: #403234;
+  display: block;
+}
+
+/* Pop-out content (hidden by default) */
+.card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  margin-top: 5px;
+  padding: 0 0;
+}
+
+/* Show content when toggle is checked */
+.toggle-checkbox:checked ~ .card-content {
+  max-height: 500px; /* enough to show content */
+  padding: 10px 0;
+}
+
+/* Checkbox inside card content */
+.card-content input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #403234;
+  cursor: pointer;
+}
+
+/* Card content labels */
+.card-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Hover effect for the card */
+.settings-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+
+/* Pop-out content (hidden by default) */
+.card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  margin-top: 5px;
+  padding: 0 0;
+}
+
+/* Show content when card is toggled */
+.settings-item-card input[type="checkbox"]:checked ~ .card-content {
+  max-height: 500px; /* enough to show content */
+  padding: 10px 0;
+}
+
+/* Checkbox and label inside pop-out */
+.card-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card-content input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #403234;
+}
+
+/* Hover effect */
+.settings-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+
+/*Stats Grid*/
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -170,7 +242,7 @@ body {
   color: #555;
 }
 
-/* Sign Out Button */
+/*Sign Out Button*/
 .signout-btn {
   width: 100%;
   padding: 10px;
@@ -186,7 +258,84 @@ body {
   background-color: #b91c1c;
 }
 
-/* Responsive */
+/* Dropdowns & Selects*/
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:hover {
+  border-color: #4B4443;
+  box-shadow: 0 0 5px rgba(75,68,67,0.3);
+}
+
+/* Checkboxes*/
+input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: #4B4443;
+}
+
+/* Extra Sections (Saved Addresses, Favorites, Orders, Support)*/
+.extra-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+.extra-section h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #403234;
+}
+
+.extra-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.extra-section ul li {
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: #eee;
+  transition: background-color 0.3s;
+}
+
+.extra-section ul li:hover {
+  background-color: #ddd;
+}
+
+/* Payment Methods inside settings-item */
+.settings-item p {
+  margin: 0 0 5px 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.settings-item label {
+  display: block;
+  text-align: left;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+/* Responsive Styles*/
+@media (max-width: 900px) {
+  .settings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 600px) {
   .profile-content {
     flex-direction: column;
@@ -196,7 +345,7 @@ body {
   .edit-btn {
     margin-left: 0;
     margin-top: 10px;
-    background-color:#403234;
+    background-color: #403234;
   }
 
   .stats-grid {
@@ -207,5 +356,18 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .extra-section {
+    padding: 10px;
+  }
+
+  .extra-section ul li,
+  select {
+    font-size: 14px;
   }
 }
