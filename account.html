@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Account - Campus Food Ordering System</title>
-    <link rel="stylesheet" href="css/account.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - Uni-Bites</title>
+  <link rel="stylesheet" href="css/account.css">
 </head>
 <body>
-    <div class="container">
-        <h2>User Account</h2>
-
-        <!-- Login Form -->
-        <h3>Login</h3>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
-
-        <div class="link">
-            <p>Don't have an account? <a href="#">Register here</a></p>
-        </div>
-
-        <!-- Register Form -->
-        <h3>Create Account</h3>
-        <input type="text" placeholder="Full Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Create Account</button>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="Images/uni bites logo Transpareent.png" alt="Uni-Bites Logo">
+      Uni-Bites
     </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="orders.html">Orders</a>
+      <a href="cart.html">Cart</a>
+      <a href="notifications.html">Notifications</a>
+      <a href="account.html" class="active">Account</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="account-container">
+    <h1>Account</h1>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+      <div class="profile-content">
+        <div class="profile-avatar">
+          <img src="https://avatar.iran.liara.run/public" alt="Profile Avatar">
+        </div>
+        <div class="profile-info">
+          <h2>Student User</h2>
+          <p>ID: STU-2025-001</p>
+          <p>Email: student@university.edu</p>
+        </div>
+        <button class="edit-btn">Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- Settings Options -->
+    <div class="settings-card">
+      <button class="settings-item">Saved Locations</button>
+      <button class="settings-item">Payment Methods</button>
+      <button class="settings-item">Notification Preferences</button>
+      <button class="settings-item">General Settings</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-value">24</p>
+        <p class="stat-label">Total Orders</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">$186</p>
+        <p class="stat-label">Total Spent</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-value">3</p>
+        <p class="stat-label">Favorite Cafes</p>
+      </div>
+    </div>
+
+    <!-- Sign Out Button -->
+    <button class="signout-btn">Sign Out</button>
+  </main>
 </body>
 </html>
