@@ -29,21 +29,22 @@ body {
   object-fit: contain;
 }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 15px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s;
+.account-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
 }
 
-.nav-links a:hover {
-  background-color: #3a3634;
+.account-container h1 {
+  margin-top: 0;
+  color: #403234;
+  text-align: center;
 }
 
-.nav-links a.active {
-  background-color: #E2C2B3;
-  color: #4B4443;
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-
