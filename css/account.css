@@ -1,84 +1,373 @@
+/*General Page Styles*/
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  height: 100vh;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/*Navigation*/
+.nav {
+  background-color: #403234;
+  color: white;
+  padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* logo left, links right */
   align-items: center;
-  font-family: Poppins, sans-serif;
-  background: linear-gradient(135deg, #e0bbff, #ffc0cb);
-  overflow: hidden;
 }
 
-/* container */
-.wrapper {
-  width: 90%;
-  height: 80vh;
+.nav-logo {
   display: flex;
-  position: relative;
-  transition: 1s ease-in-out;
+  align-items: center;
+  gap: 10px;
 }
 
-/* panels */
-.panel {
-  width: 50%;
+.nav-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #3a3634;
+}
+
+.nav-links a.active {
+  font-weight: bold;
+  background-color: #E2C2B3; /* boxed background for active */
+  color: #4B4443; /* dark text inside box */
+  text-decoration: none;
+}
+
+/*Container*/
+.account-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/*Profile Card*/
+.profile-card {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info h2 {
+  margin: 0 0 5px 0;
+}
+
+.edit-btn {
+  margin-left: auto;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #4B4443;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #3a3634;
+}
+
+/* Settings List */
+.settings-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  border-radius: 20px;
-  transition: 1s ease-in-out;
+  gap: 15px;
 }
 
-/* when login chosen → right expands */
-.wrapper.show-login .right-panel {
-  width: 70%;
-}
-.wrapper.show-login .left-panel {
-  width: 30%;
-  filter: blur(6px) brightness(0.4);
-}
-
-/* when register chosen → left expands */
-.wrapper.show-register .left-panel {
-  width: 70%;
-}
-.wrapper.show-register .right-panel {
-  width: 30%;
-  filter: blur(6px) brightness(0.4);
-}
-
-/* buttons */
-.btn {
-  padding: 14px 35px;
-  border: none;
-  border-radius: 40px;
-  font-size: 18px;
-  color: white;
-  background: linear-gradient(45deg, #ee82ee, #ffb6c1);
+/* Card */
+.settings-item-card {
+  background-color: #F5DCC8; /* lighter than #E2C2B3 */
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 8px #403234;
   cursor: pointer;
-  transition: 0.3s;
-}
-.btn:hover {
-  transform: scale(1.1);
+  transition: box-shadow 0.3s, transform 0.3s;
+  position: relative;
 }
 
-/* forms base */
-.form {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 350px;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(20px);
-  padding: 30px;
-  border-radius: 20px;
+/* Only hide toggle checkboxes */
+.toggle-checkbox {
+  display: none;
+}
+
+/* Label (title of card) */
+.settings-item-card label[for] {
+  font-weight: bold;
+  color: #403234;
+  display: block;
+}
+
+/* Pop-out content (hidden by default) */
+.card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  margin-top: 5px;
+  padding: 0 0;
+}
+
+/* Show content when toggle is checked */
+.toggle-checkbox:checked ~ .card-content {
+  max-height: 500px; /* enough to show content */
+  padding: 10px 0;
+}
+
+/* Checkbox inside card content */
+.card-content input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #403234;
+  cursor: pointer;
+}
+
+/* Card content labels */
+.card-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Hover effect for the card */
+.settings-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+
+/* Pop-out content (hidden by default) */
+.card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  margin-top: 5px;
+  padding: 0 0;
+}
+
+/* Show content when card is toggled */
+.settings-item-card input[type="checkbox"]:checked ~ .card-content {
+  max-height: 500px; /* enough to show content */
+  padding: 10px 0;
+}
+
+/* Checkbox and label inside pop-out */
+.card-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card-content input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #403234;
+}
+
+/* Hover effect */
+.settings-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+
+/*Stats Grid*/
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 8px;
   text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.8s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/*Sign Out Button*/
+.signout-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signout-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Dropdowns & Selects*/
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:hover {
+  border-color: #4B4443;
+  box-shadow: 0 0 5px rgba(75,68,67,0.3);
+}
+
+/* Checkboxes*/
+input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: #4B4443;
+}
+
+/* Extra Sections (Saved Addresses, Favorites, Orders, Support)*/
+.extra-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+.extra-section h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #403234;
+}
+
+.extra-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.extra-section ul li {
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: #eee;
+  transition: background-color 0.3s;
+}
+
+.extra-section ul li:hover {
+  background-color: #ddd;
+}
+
+/* Payment Methods inside settings-item */
+.settings-item p {
+  margin: 0 0 5px 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.settings-item label {
+  display: block;
+  text-align: left;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+/* Responsive Styles*/
+@media (max-width: 900px) {
+  .settings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .edit-btn {
+    margin-left: 0;
+    margin-top: 10px;
+    background-color: #403234;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .extra-section {
+    padding: 10px;
+  }
+
+  .extra-section ul li,
+  select {
+    font-size: 14px;
+  }
 }

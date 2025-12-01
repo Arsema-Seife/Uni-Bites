@@ -1,0 +1,90 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #222;
+}
+
+
+.nav-bar {
+    background: #e2c2b3; 
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-left .logo {
+    color: rgb(92, 51, 10);
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-right a{
+    text-decoration: none;
+    color: rgb(74, 40, 11);
+    margin-left: 20px;
+    font-weight: bold;
+    transition: 0.2s ease;
+    border-bottom: 2px solid #6c4f11;
+}
+
+.nav-right a:hover {
+    text-decoration: none;
+    color: #82202f;
+}
+
+.nav-right .active {
+    border-bottom: 2px solid;
+}
+
+
+.empty-orders {
+    text-align: center;
+    margin-top: 80px;
+    background: white;
+    padding: 40px;
+    width: 60%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.empty-icon {
+    font-size: 50px;
+    color: #403234;
+    margin-bottom: 15px;
+}
+
+.empty-orders h2 {
+    margin: 10px 0;
+    color: #403234;
+}
+
+.empty-orders p {
+    color: #555;
+    font-size: 16px;
+}
+
+.browse-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #e2c2b3, #403234);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.browse-btn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #e2c2b3, #403234);
+}
