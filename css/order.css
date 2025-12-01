@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,7 +8,7 @@ body {
 
 
 .nav-bar {
-    background: #e2c2b3; 
+    background: #403234; 
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -18,7 +17,7 @@ body {
 }
 
 .nav-left .logo {
-    color: rgb(92, 51, 10);
+    color:#403234;
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
@@ -26,20 +25,24 @@ body {
 
 .nav-right a{
     text-decoration: none;
-    color: rgb(74, 40, 11);
+    color:white;
     margin-left: 20px;
     font-weight: bold;
     transition: 0.2s ease;
-    border-bottom: 2px solid #6c4f11;
+    border-bottom: 2px none;
+ margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .nav-right a:hover {
     text-decoration: none;
-    color: #82202f;
+   
 }
 
 .nav-right .active {
-    border-bottom: 2px solid;
+  font-weight: bold;
+  background-color: #E2C2B3; 
 }
 
 
