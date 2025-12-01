@@ -70,8 +70,33 @@ body {
   margin-bottom: 8px;
   font-weight: bold;
   color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  animation: bubblePulse 1s infinite;
+  text-align: center;
+}
+
+@keyframes bubblePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
 }
 
 .ready { background-color: #403234; }
 .updated { background-color: #403234; }
 .reminder { background-color: #403234; }
+
+.notif-type:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px #403234;
+}
