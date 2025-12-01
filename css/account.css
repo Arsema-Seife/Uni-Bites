@@ -10,7 +10,7 @@ body {
 .nav {
   background-color: #403234;
   color: white;
-  padding: 10px 20px;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between; /* logo left, links right */
   align-items: center;

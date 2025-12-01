@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Poppins, sans-serif;
-  background: #f2e9e4;
-  color: #3b2a28;
+  background: white;
+  color:#3b2a28;
 }
 
 .navbar {
@@ -35,9 +35,9 @@ body {
 .nav-right a {
   color: white;
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 16px;
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .empty-cart {
