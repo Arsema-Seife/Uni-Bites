@@ -13,3 +13,37 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.nav-logo {
+  display:flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.nav-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #3a3634;
+}
+
+.nav-links a.active {
+  background-color: #E2C2B3;
+  color: #4B4443;
+}
+
