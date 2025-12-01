@@ -1,0 +1,146 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.nav {
+ background: #3b2a28;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+
+.nav-logo {
+  display:flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #E2C2B3;
+  color: #3b2a28;
+}
+
+.nav-links a.active {
+  background-color: #D4B3A7;
+  color: #3b2a28;
+}
+
+.nav-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.account-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.account-container h1 {
+  margin-top: 0;
+  color: #403234;
+  text-align: center;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notification-card {
+  background-color: #F5DCC8;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px #403234;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+.notif-type {
+  display: inline-block;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  animation: bubblePulse 1s infinite;
+  text-align: center;
+}
+
+@keyframes bubblePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
+}
+
+.ready { background-color: #403234; }
+.updated { background-color: #403234; }
+.reminder { background-color: #403234; }
+
+.notif-type:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+.notification-card h3 {
+  margin: 5px 0;
+  color: #403234;
+}
+
+.notification-card p {
+  margin: 5px 0 10px 0;
+  line-height: 1.4;
+  color: #4B4443;
+}
+
+.notif-time {
+  font-size: 12px;
+  color: #726a6a;
+}
+
+

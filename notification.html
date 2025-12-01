@@ -2,14 +2,72 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8"/>
-   <meta name="viewport" content="width=device-width, initial-scalr=1.0"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    <title>Notifications</title>
 
    <link rel="stylesheet" href="css/main.css">
    <link rel="stylesheet" href="css/notification.css">
 </head>
+
 <body>
-    <header>
+
+    <!-- Navigation Bar -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <img src="Images/uni bites logo Transpareent.png" alt="Uni-Bites Logo">
+            <span>Uni-Bites</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="orders.html">Order</a>
+            <a href="cart.html">Cart</a>
+            <a class="active" href="notification.html">Notifications</a>
+            <a href="account.html">Account</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="account-container">
         <h1>Notifications</h1>
-    </header>
+
+        <section class="notifications-list">
+
+            <!-- Notification 1 -->
+            <div class="notification-card">
+                <div class="notif-type ready">🔔Ready for Pickup</div>
+                <h3>Your order #124 is ready!</h3>
+                <p>Your pasta and Egg sandwich are prepared. Pick them up at Yellow KK.</p>
+                <span class="notif-time">5 minutes ago</span>
+            </div>
+
+            <!-- Notification 2 -->
+            <div class="notification-card">
+                <div class="notif-type updated">🔄Order Update</div>
+                <h3>Your order is being prepared</h3>
+                <p>The café has started preparing your Firifir and avocado juice.</p>
+                <span class="notif-time">20 minutes ago</span>
+            </div>
+
+            <!-- Notification 3 -->
+            <div class="notification-card">
+                <div class="notif-type reminder">✅ Reminder</div>
+                <h3>Don't forget your last pickup!</h3>
+                <p>Order #118 is still waiting at Central. Please collect it soon.</p>
+                <span class="notif-time">1 hour ago</span>
+            </div>
+
+            <!-- Notification 4 -->
+            <div class="notification-card">
+                <div class="notif-type updated">🔄Order Update</div>
+                <h3>New item added to the menu!</h3>
+                <p>Try the new Potato Combo at Green KK.</p>
+                <span class="notif-time">Yesterday</span>
+            </div>
+
+        </section>
+    </main>
+
+</body>
 </html>
