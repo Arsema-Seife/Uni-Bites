@@ -13,15 +13,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
 }
 
-.nav-left .logo {
-    color:#403234;
+.nav-logo {
+    color:white;
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+  font-size: 20px;
+  font-weight: bold;
 }
+
 
 .nav-right a{
     text-decoration: none;
@@ -37,7 +42,7 @@ body {
 
 .nav-right a:hover {
     text-decoration: none;
-   
+    background-color: #E2C2B3;
 }
 
 .nav-right .active {
@@ -79,7 +84,7 @@ body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 25px;
-    background: linear-gradient(135deg, #e2c2b3, #403234);
+    background:  #46383a;
     color: white;
     text-decoration: none;
     font-size: 16px;
