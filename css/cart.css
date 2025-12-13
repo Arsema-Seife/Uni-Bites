@@ -5,8 +5,9 @@ body {
   color:#3b2a28;
 }
 
-.navbar {
-  background: #3b2a28;
+/* HEADER - Fixed */
+.nav {
+ background: #3b2a28;
   padding: 16px 40px;
   display: flex;
   justify-content: space-between;
@@ -14,30 +15,45 @@ body {
   color: white;
 }
 
-.nav-left {
+
+.nav-logo {
+  display:flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 600;
+  gap: 20px;
 }
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #E2C2B3;
+  color: #3b2a28;
+}
+
+.nav-links a.active {
+  background-color: #D4B3A7;
+  color: #3b2a28;
+}
+
 .nav-logo img {
   width: 40px;
   height: 40px;
   object-fit: contain;
-}
-
-.nav-right {
-  display: flex;
-  gap: 28px;
-}
-
-.nav-right a {
-  color: white;
-  text-decoration: none;
-  margin-left: 15px;
-  padding: 5px 10px;
-  border-radius: 5px;
 }
 
 .empty-cart {
