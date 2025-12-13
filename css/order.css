@@ -7,7 +7,6 @@ body {
     color: #222;
 }
 
-
 /* HEADER - Fixed */
 .nav {
  background: #3b2a28;
@@ -26,7 +25,6 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
-
 .nav-links {
   display: flex;
   align-items: center;
@@ -58,7 +56,6 @@ body {
   height: 40px;
   object-fit: contain;
 }
-
 
 .empty-orders {
     text-align: center;
