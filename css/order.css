@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,7 +8,6 @@ body {
 }
 
 
-<<<<<<< HEAD
 /* HEADER - Fixed */
 .nav {
  background: #3b2a28;
@@ -23,29 +23,10 @@ body {
   display:flex;
   align-items: center;
   gap: 10px;
-=======
-.nav-bar {
-    background: #403234; 
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-}
-
-.nav-logo {
-    color:white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
->>>>>>> 57de026ae6ae6279de2ed65c1989b96d422efdc4
   font-size: 20px;
   font-weight: bold;
 }
 
-<<<<<<< HEAD
 .nav-links {
   display: flex;
   align-items: center;
@@ -76,29 +57,6 @@ body {
   width: 40px;
   height: 40px;
   object-fit: contain;
-=======
-
-.nav-right a{
-    text-decoration: none;
-    color:white;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: 0.2s ease;
-    border-bottom: 2px none;
- margin-left: 15px;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.nav-right a:hover {
-    text-decoration: none;
-    background-color: #E2C2B3;
-}
-
-.nav-right .active {
-  font-weight: bold;
-  background-color: #E2C2B3; 
->>>>>>> 57de026ae6ae6279de2ed65c1989b96d422efdc4
 }
 
 
@@ -135,7 +93,7 @@ body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 25px;
-    background:  #46383a;
+    background: linear-gradient(135deg, #e2c2b3, #403234);
     color: white;
     text-decoration: none;
     font-size: 16px;
