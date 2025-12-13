@@ -118,13 +118,27 @@ body {
   }
 }
 
-.ready { background-color: #403234; }
-.updated { background-color: #403234; }
-.reminder { background-color: #403234; }
+.ready {
+  background: linear-gradient(135deg, #a46f40, #d9b08c); /* brownish */
+}
+
+.updated {
+  background: linear-gradient(135deg, #6b4f3b, #c79f58); /* darker caramel tone */
+}
+
+.reminder {
+  background: linear-gradient(135deg, #f4b400, #f9d77e); /* gold gradient */
+}
 
 .notif-type:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px #403234;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+
+.notif-type:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
 }
 
 .notification-card h3 {
@@ -133,14 +147,26 @@ body {
 }
 
 .notification-card p {
-  margin: 5px 0 10px 0;
-  line-height: 1.4;
-  color: #4B4443;
+  color: #5a4b47;
+  line-height: 1.6;
+}
+
+.notification-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(64,50,52,0.3), 0 0 15px rgba(255, 215, 150, 0.3);
 }
 
 .notif-time {
   font-size: 12px;
   color: #726a6a;
 }
+.notification-card + .notification-card {
+  border-top: 1px solid #e0d4ca;
+  padding-top: 20px;
+}
+
+
+
+
 
 
