@@ -11,11 +11,12 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 
 body {
-    font-family: Arial, sans-serif;
+   /* font-family: Arial, sans-serif;*/
     color: var(--text-color);
     background-color: var(--background-color);
 }
@@ -66,9 +67,8 @@ body {
 }
 
 .nav-logo img {
-  width: 40px;
+  width: 60px;
   height: 40px;
-  object-fit: contain;
 }
 
 /* HERO */
@@ -131,7 +131,7 @@ body {
 }
 
 .food-slide.one {
-    background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800');
+    background-image: url('images/central food.jpg');
 }
 .food-slide.two {
     background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800');
