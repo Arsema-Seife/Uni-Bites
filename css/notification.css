@@ -6,13 +6,14 @@ body {
 }
 
 .nav {
-  background-color: #403234;
-  color: white;
-  padding: 10px 20px;
+ background: #3b2a28;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
+
 
 .nav-logo {
   display:flex;
@@ -22,6 +23,31 @@ body {
   font-weight: bold;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #E2C2B3;
+  color: #3b2a28;
+}
+
+.nav-links a.active {
+  background-color: #D4B3A7;
+  color: #3b2a28;
+}
 
 .nav-logo img {
   width: 40px;
@@ -48,3 +74,99 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+.notification-card {
+  background-color: #F5DCC8;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px #403234;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px #403234;
+}
+
+.notif-type {
+  display: inline-block;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  animation: bubblePulse 1s infinite;
+  text-align: center;
+}
+
+@keyframes bubblePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0.3);
+  }
+}
+
+.ready {
+  background: linear-gradient(135deg, #a46f40, #d9b08c); /* brownish */
+}
+
+.updated {
+  background: linear-gradient(135deg, #6b4f3b, #c79f58); /* darker caramel tone */
+}
+
+.reminder {
+  background: linear-gradient(135deg, #f4b400, #f9d77e); /* gold gradient */
+}
+
+.notif-type:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+
+.notif-type:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.notification-card h3 {
+  margin: 5px 0;
+  color: #403234;
+}
+
+.notification-card p {
+  color: #5a4b47;
+  line-height: 1.6;
+}
+
+.notification-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(64,50,52,0.3), 0 0 15px rgba(255, 215, 150, 0.3);
+}
+
+.notif-time {
+  font-size: 12px;
+  color: #726a6a;
+}
+.notification-card + .notification-card {
+  border-top: 1px solid #e0d4ca;
+  padding-top: 20px;
+}
+
+
+
+
+
+
