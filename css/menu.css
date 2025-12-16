@@ -4,6 +4,9 @@ body {
     padding: 0;
     background: #f4f4f4;
     color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -14,185 +17,111 @@ ul {
     padding-left: 20px;
 }
 
-/* HEADER - Fixed */
-.nav {
- background: #3b2a28;
-  padding: 16px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
+
+ 
+header {
+    background: ;
+    color: white;
+    padding: 20px;
+    display: flex;                     
+    justify-content: center;    
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-
-.nav-logo {
-  display:flex;
+.nav {
+  background-color: #403234;
+  color: white;
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between; /* logo left, links right */
   align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  font-weight: bold;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 24px;               /* spacing between nav links */
 }
 
 .nav-links a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  transition: 0.3s ease;
+ transition: color 0.3s ease;
+ margin-left: 15px;
+ padding: 5px 10px;
+ border-radius: 5px;
 }
 
 .nav-links a:hover {
-  background-color: #E2C2B3;
-  color: #3b2a28;
+ color: #e2c2b3;
+ text-decoration: none;
 }
 
-.nav-links a.active {
-  background-color: #D4B3A7;
-  color: #3b2a28;
+.nav-links a.active{
+    font-weight: bold;
+    background-color: #e2c2b3;
+    color: #4b4443;
+    text-decoration: none;
 }
 
-.nav-logo img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+header h1 {
+    margin: 0;
+    font-size: 28px;
 }
-/* 
-   MAIN CONTENT
-*/
+
+nav ul {
+    list-style: none;
+    margin:  0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+
+    justify-content: flex-end;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
 
 main {
     padding: 20px;
-}
-/*commented here */
-
-article {
-    background: white;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
-
-
-
-details summary {
-    list-style: none;
-}
-
-
-details summary {
-    cursor: pointer;
-    padding: 12px 15px;
-    font-size: 16px;
-    background: linear-gradient(135deg, #e2c2b3, #403234);
-    color: white;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    position: relative;
-}
-
-
-details summary:hover {
-    background: linear-gradient(135deg, #e2c2b3, #403234);
-    transform: translateY(-2px);
-}
-
-
-details summary::after {
-    content: "˅";
-    position: absolute;
-    right: 15px;
-    font-size: 14px;
-    transition: transform 0.3s ease;
-}
-
-
-details[open] summary::after {
-    transform: rotate(180deg);
-}
-
-
-details > ul,
-details > div,
-details > details {
-    background: #f9f9ff;
-    padding: 15px;
-    border-left: 3px solid #e2c2b3;
-    border-radius: 6px;
-    margin-top: 8px;
-    animation: dropFade 0.3s ease;
-}
-
-
-@keyframes dropFade {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-details details summary {
-    background: #e1e9ff;
-    color: #222;
-    border-left: 4px solid #f7f3f5;
-}
-
-details details summary:hover {
-    background: #d4e1fc;
-    transform: translateX(3px);
-}
-
-
-details ul li {
-    margin-bottom: 12px;
-    padding: 10px 12px;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-details ul li:hover {
-    transform: translateX(6px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-
-hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 40px 0;
-}
-
-details details summary {
-    background: #e2c2b3;
-    color: #222;
-    border-left: 4px solid #f7f3f5;
-}
-
-/*till here */
 
 /* Cafes container and cards */
 .cafes-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 25px;
-    padding: 20px 0; /* padding top/bottom inside main section */
+    padding: 20px 0;
+    width: 100%;
 }
 
 /* Café Card */
@@ -202,6 +131,9 @@ details details summary {
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 25px;
 }
 
 .cafe-card:hover {
@@ -225,15 +157,38 @@ details details summary {
 /* Café Info */
 .cafe-info {
     padding: 15px;
+    text-align: center;
 }
 
 .cafe-info h3 {
     margin-top: 0;
     color: #403234;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .cafe-info p {
     color: #555;
+}
+
+.cafe-info p strong {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Center the menu details */
+details {
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+details summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 /* Menu Sections */
