@@ -125,6 +125,7 @@ body {
     display: flex;
     justify-content: flex-end; /* Correct property value */
     align-items: right ; /* Changed back to center */
+
 }
 
 .hero-image img {
@@ -186,7 +187,7 @@ body {
         border-radius: 15px;
     }
 }
-
+*/
 /* SECTIONS */
 section {
     padding: 40px 30px;
@@ -340,3 +341,4 @@ footer {
         width: 100%;
     }
 }
+

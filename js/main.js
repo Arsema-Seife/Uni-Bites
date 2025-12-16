@@ -6,3 +6,4 @@ document.querySelector('.hero-button').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Uni Bites website loaded successfully!');
 });
+

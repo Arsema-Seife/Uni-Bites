@@ -7,7 +7,7 @@ body {
     color: #222;
 }
 
-/* HEADER - Fixed */
+
 .nav {
  background: #3b2a28;
   padding: 16px 40px;
@@ -85,20 +85,19 @@ body {
     color: #555;
     font-size: 16px;
 }
-
 .browse-btn {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 25px;
-    background: linear-gradient(135deg, #e2c2b3, #403234);
+    background: linear-gradient(135deg, #80675b, #403234);
     color: white;
     text-decoration: none;
     font-size: 16px;
     border-radius: 8px;
     transition: 0.3s ease;
+    
 }
-
 .browse-btn:hover {
     transform: translateY(-3px);
-    background: linear-gradient(135deg, #e2c2b3, #403234);
+    background: linear-gradient(135deg, #bda79d, #47393b);
 }
