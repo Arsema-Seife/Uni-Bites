@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🍽 Owner Dashboard | Uni-Bites</title>
+<link rel="stylesheet" href="css/order.css">
+    <style></style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>🍽 Uni-Bites Owner Dashboard</h1>
+        <p>Manage orders and monitor sales</p>
+    </div>
+    <button class="toggle-btn" id="themeToggle">🌙 Dark</button>
+</header>
+
+<section class="summary">
+    <div class="card">
+        <h3>Total Orders</h3>
+        <span id="totalOrders">0</span>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <span id="totalRevenue">0 Birr</span>
+    </div>
+</section>
+
+<section class="orders">
+    <h2>📦 Orders List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Client ID</th>
+                <th>Phone</th>
+                <th>Foods Ordered</th>
+                <th>Quantity</th>
+                <th>Total Price (Birr)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="ordersTable"></tbody>
+    </table>
+</section>
+
+<script src="js/order.js"></script> 
+</body>
+</html>
