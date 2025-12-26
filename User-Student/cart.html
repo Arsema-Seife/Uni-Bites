@@ -24,14 +24,38 @@
             <a href="account.html">Account</a>
         </div>
     </nav>
+       <main class="cart-main">
+      <div class="cart-container">
+        <h1>Shopping Cart</h1>
 
+        <div id="cartItems" class="cart-items">
+          <!-- Cart items will be loaded here -->
+        </div>
 
     <div class="empty-cart">
-        <div class="empty-icon">🛍️</div>
+        <div class="empty-icon">🛒</div>
         <h2>Your cart is empty</h2>
         <p>Add some delicious items from our menu to get started!</p>
         <button class="browse-btn">Browse Menu</button>
     </div>
+
+    <div id="cartSummary" class="cart-summary" style="display: none">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="subtotal">0 Birr</span>
+          </div>
+
+          <div class="checkout-section">
+            <textarea
+              id="orderNotes"
+              placeholder="Special instructions (optional)"
+            ></textarea>
+
+            <button id="checkoutBtn" class="checkout-btn">Place Order</button>
+          </div>
+        </div>
+      </div>
+    </main>
 <script src="js/cart.js"></script>
 </body>
 </html>
