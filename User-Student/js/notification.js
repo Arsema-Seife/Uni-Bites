@@ -12,3 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, index * 150);
   });
 });
+
+const notificationData = [
+  {
+    title: "Order Received",
+    message: "Your order has been placed successfully."
+  },
+  {
+    title: "Preparing Order",
+    message: "The kitchen is preparing your food."
+  },
+  {
+    title: "Order Ready",
+    message: "Your order is ready for pickup."
+  }
+];
