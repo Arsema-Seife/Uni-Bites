@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Account - Uni-Bites</title>
+<link rel="stylesheet" href="css/admin-account.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+    <div class="nav-logo">
+        <img src="Images/uni bites logo Transpareent.png" alt="Uni-Bites Logo">
+        <span>Uni-Bites Admin</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cafes.html">Cafes</a>
+        <a class="active" href="admin-account.html">Account</a>
+    </div>
+</nav>
+
+<main class="account-container">
+
+  <!-- PROFILE CARD -->
+  <section class="profile-card">
+      <div class="profile-avatar-large">
+          <img src="https://avatar.iran.liara.run/public" alt="Avatar" id="profileImg">
+      </div>
+      <div class="profile-info-large">
+          <h2 id="profileName">Admin User</h2>
+          <p id="profilePhone">09********</p>
+      </div>
+  </section>
+
+  <!-- SIDE BY SIDE INFO + EDIT FORM -->
+  <section class="side-section">
+    
+    <!-- ADMIN INFO -->
+    <div class="account-section info-section">
+        <h3>Admin Information</h3>
+        <div class="info-row">
+          <span>Admin ID</span>
+          <span id="infoAdminId">ADM****</span>
+        </div>
+        <div class="info-row">
+          <span>Phone</span>
+          <span id="infoPhone">09********</span>
+        </div>
+        <div class="info-row">
+          <span>Email</span>
+          <span id="infoEmail">admin@unibites.com</span>
+        </div>
+    </div>
+
+    <!-- EDIT PROFILE -->
+    <div class="account-section edit-section">
+        <h3>Edit Profile</h3>
+        <form id="profileForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullName" placeholder="Admin User">
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="phone" placeholder="09********">
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="admin@unibites.com">
+          </div>
+
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" id="avatarUpload" accept="image/*">
+          </div>
+
+          <button type="submit" class="btn">Save Changes</button>
+        </form>
+    </div>
+
+  </section>
+
+  <!-- SIGN OUT -->
+  <button class="btn logout">Sign Out</button>
+
+</main>
+
+<script src="js/admin-account.js"></script>
+</body>
+</html>
