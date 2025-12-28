@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="Images/uni bites logo Transpareent.png" type="image">
-
     <title>My Orders</title>
    <link rel="stylesheet" href="css/order.css">
 </head>
@@ -26,14 +24,30 @@
             <a href="account.html">Account</a>
         </div>
     </nav>
-    <!-- Empty Orders Message -->
-<br>
-    <div class="empty-orders">
-        <div class="empty-icon">🛒No order yet!</div>
-        <h2>Your order list is empty</h2>
-        <p>Add some delicious items from our menu to get started!</p>
-      <button class="browse-btn">Browse Menu</button>
-    </div>
+    <!-- Main Content -->
+    <main class="orders-main">
+        <div class="orders-container">
+            <div class="orders-header">
+                <h1>My Orders</h1>
+            </div>
+
+
+
+            <!-- Orders List -->
+            <div id="ordersContainer" class="orders-list">
+                <!-- Orders will be loaded here -->
+            </div>
+
+            <!-- Empty Orders Message -->
+            <div id="emptyOrders" class="empty-orders">
+                <div class="empty-icon">🛒</div>
+                <h2>No orders yet!</h2>
+                <p>Your order list is empty. Add some delicious items from our menu to get started!</p>
+                <a href="menu.html" class="browse-btn">Browse Menu</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/order.js"></script>
 </body>
-<script src="js/order.js"></script> 
 </html>
