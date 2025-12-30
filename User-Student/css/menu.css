@@ -17,30 +17,19 @@ ul {
     padding-left: 20px;
 }
 
-
- 
-header {
-    background: ;
-    color: white;
-    padding: 20px;
-    display: flex;                     
-    justify-content: center;    
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
+/* Navigation */
 .nav {
   background-color: #403234;
   color: white;
   padding: 12px 32px;
   display: flex;
-  justify-content: space-between; /* logo left, links right */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
+
 .nav-logo {
   display: flex;
   align-items: center;
@@ -55,21 +44,21 @@ header {
 
 .nav-links {
   display: flex;
-  gap: 24px;               /* spacing between nav links */
+  gap: 24px;
 }
 
 .nav-links a {
   color: #fff;
   text-decoration: none;
- transition: color 0.3s ease;
- margin-left: 15px;
- padding: 5px 10px;
- border-radius: 5px;
+  transition: color 0.3s ease;
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .nav-links a:hover {
- color: #e2c2b3;
- text-decoration: none;
+  color: #e2c2b3;
+  text-decoration: none;
 }
 
 .nav-links a.active{
@@ -79,31 +68,123 @@ header {
     text-decoration: none;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-nav ul {
-    list-style: none;
-    margin:  0;
-    padding: 0;
+/* View Toggle */
+.view-toggle {
     display: flex;
-    gap: 20px;
-
-    justify-content: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-nav ul li a {
-    text-decoration: none;
+/* Secret Cafe Access */
+.cafe-access {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.access-prompt {
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid #403234;
+}
+
+.access-prompt input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.access-prompt button {
+    padding: 8px 16px;
+    background: #403234;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
     font-weight: bold;
+    transition: background 0.3s ease;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+.access-prompt button:hover {
+    background: #5a4a4c;
 }
 
+.toggle-btn {
+    padding: 12px 24px;
+    border: 2px solid #403234;
+    background: white;
+    color: #403234;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #403234;
+    color: white;
+}
+
+.toggle-btn:hover {
+    background: #e2c2b3;
+    color: #403234;
+}
+
+/* View Sections */
+.view-section {
+    display: none;
+}
+
+.view-section.active {
+    display: block;
+}
+
+/* Search and Filter Bar */
+.search-filter-bar {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+}
+
+.search-filter-bar input,
+.search-filter-bar select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-filter-bar input:focus,
+.search-filter-bar select:focus {
+    outline: none;
+    border-color: #403234;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #666;
+}
 
 main {
     padding: 20px;
@@ -113,10 +194,321 @@ main {
     width: 100%;
 }
 
+/* Menu Items Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
 
-/* Cafes container and cards */
+.menu-item-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-item-info {
+    padding: 20px;
+}
+
+.menu-item-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #403234;
+    margin-bottom: 8px;
+}
+
+.menu-item-description {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.menu-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e2c2b3;
+}
+
+.menu-item-cafe {
+    font-size: 0.9em;
+    color: #888;
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.add-to-cart-btn {
+    background: #403234;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: #e2c2b3;
+    color: #403234;
+}
+
+/* Cafe Management Styles */
+.cafe-management {
+    background: white;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.management-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    color: #666;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    color: #403234;
+    border-bottom-color: #403234;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Add Item Form */
+.add-item-form {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.add-item-form h3 {
+    margin-top: 0;
+    color: #403234;
+}
+
+.add-item-form form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.add-item-form input,
+.add-item-form textarea,
+.add-item-form select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.add-item-form textarea {
+    grid-column: 1 / -1;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.add-item-form button {
+    grid-column: 1 / -1;
+    background: #403234;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-item-form button:hover {
+    background: #e2c2b3;
+    color: #403234;
+}
+
+/* Management Menu List */
+.management-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: white;
+}
+
+.management-item-info h4 {
+    margin: 0 0 5px 0;
+    color: #403234;
+}
+
+.management-item-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.management-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background: #f44336;
+    color: white;
+}
+
+/* Analytics */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #403234, #e2c2b3);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    display: block;
+}
+
+/* Orders List */
+.order-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.order-id {
+    font-weight: bold;
+    color: #403234;
+}
+
+.order-status {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.order-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.order-status.preparing {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.order-status.ready {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-filter-bar {
+        flex-direction: column;
+    }
+    
+    .search-filter-bar input,
+    .search-filter-bar select {
+        min-width: 100%;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .management-tabs {
+        flex-direction: column;
+    }
+    
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Legacy styles for existing cafe cards */
 .cafes-container {
-     display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
@@ -124,7 +516,6 @@ main {
     width: 100%;
 }
 
-/* Café Card */
 .cafe-card {
     background: #fff;
     border-radius: 15px;
@@ -141,8 +532,6 @@ main {
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-
-/* Café Image */
 .cafe-card img {
     width: 100%;
     height: 180px;
@@ -154,7 +543,6 @@ main {
     transform: scale(1.05);
 }
 
-/* Café Info */
 .cafe-info {
     padding: 15px;
     text-align: center;
@@ -171,12 +559,6 @@ main {
     color: #555;
 }
 
-.cafe-info p strong {
-    display: inline-block;
-    margin-top: 10px;
-}
-
-/* Center the menu details */
 details {
     max-width: 700px;
     margin: 20px auto;
@@ -189,35 +571,4 @@ details summary {
     gap: 10px;
     margin: 0 auto;
     width: fit-content;
-}
-
-/* Menu Sections */
-.menu-section {
-    margin-top: 15px;
-}
-
-.menu-section h4 {
-    color: #e2c2b3;
-    margin-bottom: 10px;
-}
-
-.menu-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-section li {
-    margin-bottom: 8px;
-}
-
-/* Optional fade-in animation on scroll */
-.cafe-card {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.cafe-card.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
