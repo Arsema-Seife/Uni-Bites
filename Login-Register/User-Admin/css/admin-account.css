@@ -5,40 +5,49 @@ body {
   color: #3b2a28;
 }
 
-/* NAVBAR */
-.nav {
-  background: #3b2a28;
-  padding: 16px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
+/* ================= NAVBAR ================= */
+.nav{
+  background:#403234;
+  padding:16px 40px;
+  min-height:72px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#fff;
 }
 
-.nav-logo img {
-  height: 40px;
-  margin-right: 10px;
-  vertical-align: middle;
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:20px;
+  font-weight:700;
 }
 
-.nav-logo span {
-  font-size: 18px;
-  font-weight: bold;
-  vertical-align: middle;
+.nav-logo img{
+  width:40px;
+  height:40px;
 }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  margin-left: 10px;
+.nav-links{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
-.nav-links a.active {
-  background-color: #d4b3a7;
-  color: #3b2a28;
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:8px;
+  white-space:nowrap;
+  transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  background:#D4B3A7;
+  color:#403234;
 }
 
 /* MAIN CONTAINER */
