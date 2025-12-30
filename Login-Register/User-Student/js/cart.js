@@ -35,8 +35,12 @@ class ShoppingCart {
 
   loadCart() {
     const savedCart = localStorage.getItem("uniBitesCart");
+    console.log('Loading cart from localStorage:', savedCart);
     if (savedCart) {
       this.cart = JSON.parse(savedCart);
+      console.log('Parsed cart:', this.cart);
+    } else {
+      console.log('No saved cart found');
     }
   }
 
@@ -45,17 +49,26 @@ class ShoppingCart {
   }
 
   displayCart() {
+    console.log('displayCart called, cart contents:', this.cart);
     const cartItemsContainer = document.getElementById("cartItems");
     const emptyCartContainer = document.getElementById("emptyCart");
     const cartSummaryContainer = document.getElementById("cartSummary");
 
+    console.log('Cart elements found:', {
+      cartItems: !!cartItemsContainer,
+      emptyCart: !!emptyCartContainer,
+      cartSummary: !!cartSummaryContainer
+    });
+
     if (this.cart.length === 0) {
+      console.log('Cart is empty, showing empty state');
       cartItemsContainer.style.display = "none";
       cartSummaryContainer.style.display = "none";
       emptyCartContainer.style.display = "block";
       return;
     }
 
+    console.log('Cart has items, showing cart content');
     emptyCartContainer.style.display = "none";
     cartItemsContainer.style.display = "block";
     cartSummaryContainer.style.display = "block";
