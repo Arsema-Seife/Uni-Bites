@@ -52,3 +52,46 @@ function getTimeAgo(timestamp) {
     if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
     return new Date(timestamp).toLocaleDateString();
 }
+
+function renderNotifications() {
+    const container = document.querySelector('.notifications-list');
+    
+    if (!container) {
+        console.error('Container not found!');
+        return;
+    }
+
+    // Filter notifications
+    let filtered = currentFilter === 'all' 
+        ? notifications 
+        : notifications.filter(n => n.type === currentFilter);
+    
+    // Sort by timestamp
+    filtered = filtered.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    if (filtered.length === 0) {
+        container.innerHTML = '<div class="no-notifications"><p>No notifications found</p></div>';
+        return;
+    }
+
+    container.innerHTML = filtered.map(n => `
+        <div class="notification-card ${n.isRead ? 'read' : 'unread'}" data-id="${n.id}">
+            <div class="notification-header">
+                <div class="notif-type ${n.type}">${getIcon(n.type)} ${getLabel(n.type)}</div>
+                <div class="notification-actions">
+                    <button class="action-btn mark-btn" onclick="toggleRead(${n.id})">${n.isRead ? '📖' : '📩'}</button>
+                    <button class="action-btn delete-btn" onclick="deleteNotification(${n.id})">🗑️</button>
+                </div>
+            </div>
+            <h3>${n.title}</h3>
+            <p>${n.message}</p>
+            <div class="notification-footer">
+                <span class="notif-time">${getTimeAgo(n.timestamp)}</span>
+            </div>
+        </div>
+    `).join('');
+
+    updateBadge();
+    animateCards();
+}
+
