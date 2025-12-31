@@ -129,3 +129,29 @@ function setFilter(filterType) {
     renderNotifications();
 }
 
+function toggleRead(id) {
+    const notification = notifications.find(n => n.id === id);
+    if (notification) {
+        notification.isRead = !notification.isRead;
+        renderNotifications();
+    }
+}
+
+function deleteNotification(id) {
+    notifications = notifications.filter(n => n.id !== id);
+    renderNotifications();
+}
+
+function markAllRead() {
+    notifications.forEach(n => n.isRead = true);
+    renderNotifications();
+    showToast('All notifications marked as read');
+}
+
+function clearAll() {
+    if (confirm('Delete all notifications?')) {
+        notifications = [];
+        renderNotifications();
+        showToast('All notifications cleared');
+    }
+}
