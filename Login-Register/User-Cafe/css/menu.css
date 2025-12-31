@@ -11,45 +11,6 @@ body {
     color: #333;
     line-height: 1.5;
 }
-
-/* Navigation */
-.nav {
-    background: #403234;
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.nav-logo img {
-    height: 40px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    background: rgba(255, 255, 255, 0.2);
-}
-
 /* Main Content */
 .dashboard-main {
     max-width: 1000px;
