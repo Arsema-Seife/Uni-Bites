@@ -27,3 +27,21 @@ const notificationData = [
     message: "Your order is ready for pickup."
   }
 ];
+
+const notificationContainer = document.getElementById("notifications-container");
+
+function renderNotifications() {
+  notificationContainer.innerHTML = "";
+
+  notifications.forEach((notif) => {
+    const card = document.createElement("div");
+    card.className = "notification-card";
+
+    card.innerHTML = `
+      <h3>${notif.title}</h3>
+      <p>${notif.message}</p>
+    `;
+
+    notificationContainer.appendChild(card);
+  });
+}
