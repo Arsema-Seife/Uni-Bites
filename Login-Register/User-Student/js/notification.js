@@ -95,3 +95,37 @@ function renderNotifications() {
     animateCards();
 }
 
+function updateBadge() {
+    const unread = notifications.filter(n => !n.isRead).length;
+    const navBadge = document.querySelector('.nav-notification-badge');
+    if (navBadge) {
+        navBadge.textContent = unread;
+        navBadge.style.display = unread > 0 ? 'flex' : 'none';
+    }
+}
+
+function animateCards() {
+    const cards = document.querySelectorAll('.notification-card');
+    cards.forEach((card, i) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, i * 100);
+    });
+}
+
+function setFilter(filterType) {
+    currentFilter = filterType;
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-filter="${filterType}"]`).classList.add('active');
+    
+    renderNotifications();
+}
+
