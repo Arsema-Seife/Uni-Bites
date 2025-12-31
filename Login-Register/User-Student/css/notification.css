@@ -320,15 +320,136 @@ filter-buttons {
 }
 
 .ready {
-  background: linear-gradient(135deg, #a46f40, #d9b08c); /* brownish */
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
 }
 
 .updated {
-  background: linear-gradient(135deg, #6b4f3b, #c79f58); /* darker caramel tone */
+  background: linear-gradient(135deg, #3498db 0%, #5dade2 100%);
 }
 
 .reminder {
-  background: linear-gradient(135deg, #f4b400, #f9d77e); /* gold gradient */
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+}
+
+.notification-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notification-card:hover .notification-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+}
+
+.action-btn:hover {
+  background: rgba(255,255,255,1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.notification-card h3 {
+  margin: 10px 0;
+  color: #2c1810;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notification-card p {
+  color: #5a4b47;
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.notification-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.notif-time {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.priority-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.priority-high {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.priority-medium {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.priority-low {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+}
+
+.notification-card.unread {
+  border-left: 5px solid #8b4513;
+  background: linear-gradient(145deg, #fffef7 0%, #f9f8f0 100%);
+}
+
+.notification-card.read {
+  opacity: 0.85;
+}
+
+.no-notifications {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7f8c8d;
+}
+
+.no-notifications p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
 }
 
 .notif-type:hover {
