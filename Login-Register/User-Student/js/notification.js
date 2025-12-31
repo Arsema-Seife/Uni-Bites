@@ -155,3 +155,11 @@ function clearAll() {
         showToast('All notifications cleared');
     }
 }
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast toast-success show';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
