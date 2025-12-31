@@ -1,4 +1,3 @@
-// Simple notification system
 let notifications = [
     {
         id: 1,
@@ -27,3 +26,29 @@ let notifications = [
 ];
 
 let currentFilter = 'all';
+
+function getIcon(type) {
+    const icons = {
+        ready: '🔔',
+        updated: '🔄',
+        reminder: '✅'
+    };
+    return icons[type] || '📢';
+}
+
+function getLabel(type) {
+    const labels = {
+        ready: 'Ready for Pickup',
+        updated: 'Order Update',
+        reminder: 'Reminder'
+    };
+    return labels[type] || 'Notification';
+}
+
+function getTimeAgo(timestamp) {
+    const diff = Math.floor((new Date() - new Date(timestamp)) / 1000);
+    if (diff < 60) return 'Just now';
+    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+    return new Date(timestamp).toLocaleDateString();
+}
