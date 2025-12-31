@@ -1,51 +1,114 @@
-// Exactly same JS logic as student-account.js
-// Change localStorage keys to admin-specific
-
+/* ADMIN ACCOUNT MANAGEMENT */
 document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+        window.location.href = "../../role.html";
+        return;
+    }
 
-  const form = document.getElementById("profileForm");
-  const avatarInput = document.getElementById("avatarUpload");
-  const profileImg = document.getElementById("profileImg");
+    loadUserProfile(currentUser);
+    populateFormFields(currentUser);
+    setupEventListeners();
+});
 
-  const profileName = document.getElementById("profileName");
-  const profilePhone = document.getElementById("profilePhone");
+function getCurrentUser() {
+    const userStr = localStorage.getItem('currentUser');
+    return userStr ? JSON.parse(userStr) : null;
+}
 
-  const infoPhone = document.getElementById("infoPhone");
-  const infoEmail = document.getElementById("infoEmail");
+function loadUserProfile(user) {
+    const profileName = document.getElementById("profileName");
+    const profilePhone = document.getElementById("profilePhone");
+    const infoPhone = document.getElementById("infoPhone");
+    const infoEmail = document.getElementById("infoEmail");
+    const profileImg = document.getElementById("profileImg");
 
-  // Load saved data
-  if (localStorage.getItem("adminName")) profileName.textContent = localStorage.getItem("adminName");
-  if (localStorage.getItem("adminPhone")) profilePhone.textContent = localStorage.getItem("adminPhone");
-  if (localStorage.getItem("adminEmail")) infoEmail.textContent = localStorage.getItem("adminEmail");
-  if (localStorage.getItem("adminPhone")) infoPhone.textContent = localStorage.getItem("adminPhone");
-  if (localStorage.getItem("adminAvatar")) profileImg.src = localStorage.getItem("adminAvatar");
+    // Get stored data or use user data as fallback
+    const adminName = localStorage.getItem("adminName") || user.username || "Admin User";
+    const adminPhone = localStorage.getItem("adminPhone") || user.phone || "Not set";
+    const adminEmail = localStorage.getItem("adminEmail") || user.email || "admin@unibites.com";
 
-  avatarInput.addEventListener("change", () => {
-    const file = avatarInput.files[0];
+    if (profileName) profileName.textContent = adminName;
+    if (profilePhone) profilePhone.textContent = adminPhone;
+    if (infoPhone) infoPhone.textContent = adminPhone;
+    if (infoEmail) infoEmail.textContent = adminEmail;
+    if (profileImg && localStorage.getItem("adminAvatar")) {
+        profileImg.src = localStorage.getItem("adminAvatar");
+    }
+}
+
+function populateFormFields(user) {
+    // Pre-fill form fields with existing data
+    const fullNameInput = document.getElementById("fullName");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+
+    if (fullNameInput) fullNameInput.value = localStorage.getItem("adminName") || user.username || "";
+    if (phoneInput) phoneInput.value = localStorage.getItem("adminPhone") || user.phone || "";
+    if (emailInput) emailInput.value = localStorage.getItem("adminEmail") || user.email || "";
+}
+
+function setupEventListeners() {
+    const form = document.getElementById("profileForm");
+    const avatarInput = document.getElementById("avatarUpload");
+    const logoutBtn = document.querySelector(".logout");
+
+    if (avatarInput) avatarInput.addEventListener("change", handleAvatarUpload);
+    if (form) form.addEventListener("submit", handleProfileUpdate);
+    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+}
+
+function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
-    reader.onload = () => {
-      profileImg.src = reader.result;
-      localStorage.setItem("adminAvatar", reader.result);
+    reader.onload = function(e) {
+        const profileImg = document.getElementById("profileImg");
+        if (profileImg) {
+            profileImg.src = e.target.result;
+            localStorage.setItem("adminAvatar", e.target.result);
+        }
     };
-    if (file) reader.readAsDataURL(file);
-  });
+    reader.readAsDataURL(file);
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("fullName").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
+function handleProfileUpdate(event) {
+    event.preventDefault();
+    const name = document.getElementById("fullName")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
 
-    if (name) { profileName.textContent = name; localStorage.setItem("adminName", name); }
-    if (phone) { profilePhone.textContent = phone; infoPhone.textContent = phone; localStorage.setItem("adminPhone", phone); }
-    if (email) { infoEmail.textContent = email; localStorage.setItem("adminEmail", email); }
+    if (name) {
+        document.getElementById("profileName").textContent = name;
+        localStorage.setItem("adminName", name);
+    }
+    if (phone) {
+        document.getElementById("profilePhone").textContent = phone;
+        document.getElementById("infoPhone").textContent = phone;
+        localStorage.setItem("adminPhone", phone);
+    }
+    if (email) {
+        document.getElementById("infoEmail").textContent = email;
+        localStorage.setItem("adminEmail", email);
+    }
+
+    // Update the currentUser object in localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+        if (name) currentUser.username = name;
+        if (email) currentUser.email = email;
+        if (phone) currentUser.phone = phone;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    }
 
     alert("Profile updated successfully ✅");
-  });
+}
 
-  document.querySelector(".logout").addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "index.html";
-  });
-
-});
+function handleLogout() {
+    if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('currentUser');
+        window.location.href = "../../role.html";
+    }
+}
