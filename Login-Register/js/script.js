@@ -1,22 +1,3 @@
-// =======================
-// THEME TOGGLE
-// =======================
-const themeSwitch = document.getElementById('themeSwitch');
-
-if (themeSwitch) {
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeSwitch.checked = true;
-    }
-
-    themeSwitch.addEventListener('change', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem(
-            'theme',
-            document.body.classList.contains('dark-mode') ? 'dark' : 'light'
-        );
-    });
-}
 
 // =======================
 // LOGIN / REGISTER TOGGLE
@@ -61,3 +42,73 @@ if (role) {
         }
     }
 }
+// =======================
+// FORM SUBMISSION HANDLER
+// =======================
+function loginUser() {
+    const role = localStorage.getItem("userRole");
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(
+        u => u.username === username &&
+             u.password === password &&
+             u.role === role
+    );
+
+    if (!user) {
+        alert("Invalid login credentials");
+        return;
+    }
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("role", role);
+
+    redirectByRole(role);
+}
+
+function registerUser() {
+    const role = localStorage.getItem("userRole");
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email")?.value || "";
+    const password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const exists = users.some(
+        u => u.username === username && u.role === role
+    );
+
+    if (exists) {
+        alert("User already exists");
+        return;
+    }
+
+    users.push({ username, email, password, role });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("role", role);
+
+    redirectByRole(role);
+}
+function redirectByRole(role) {
+    if (role === "student") {
+        window.location.href = "User-Student/index.html";
+    } else if (role === "cafe") {
+        window.location.href = "User-Cafe/index.html";
+    } else if (role === "admin") {
+        window.location.href = "User-Admin/index.html";
+    }
+}
+document.getElementById("loginForm")?.addEventListener("submit", e => {
+    e.preventDefault();
+    loginUser();
+});
+
+document.getElementById("registerForm")?.addEventListener("submit", e => {
+    e.preventDefault();
+    registerUser();
+});
