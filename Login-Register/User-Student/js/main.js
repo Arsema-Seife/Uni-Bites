@@ -1,9 +1,19 @@
-document.querySelector('.hero-button').addEventListener('click', function() {
-    alert('Order feature coming soon! Redirecting to menu...');
-    window.location.href = 'menu.html';
-});
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Uni Bites website loaded successfully!');
+  // Order Now button
+  const orderBtn = document.querySelector(".hero-button");
+  if (orderBtn) {
+    orderBtn.onclick = () => {
+      alert("Please login to place an order");
+    };
+  }
+
+  // Cafe cards click
+  document.querySelectorAll(".Cafe-card").forEach(card => {
+    card.onclick = () => {
+      alert("Cafe menu page coming soon");
+    };
+  });
+
 });
 
