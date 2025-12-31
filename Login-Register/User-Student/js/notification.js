@@ -61,12 +61,10 @@ function renderNotifications() {
         return;
     }
 
-    // Filter notifications
     let filtered = currentFilter === 'all' 
         ? notifications 
         : notifications.filter(n => n.type === currentFilter);
     
-    // Sort by timestamp
     filtered = filtered.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     if (filtered.length === 0) {
@@ -163,3 +161,18 @@ function showToast(message) {
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page loaded, rendering notifications...');
+    renderNotifications();
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            setFilter(btn.dataset.filter);
+        });
+    });
+    
+    document.getElementById('mark-all-read').addEventListener('click', markAllRead);
+    document.getElementById('clear-all').addEventListener('click', clearAll);
+});
+
