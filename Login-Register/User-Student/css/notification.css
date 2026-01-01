@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
 }
 
-/* Dark Brown Navigation */
+/* Navigation */
 .nav {
   background: linear-gradient(135deg, #2c1810 0%, #3d2317 50%, #4a2a1a 100%);
   padding: 16px 40px;
@@ -42,9 +42,7 @@ body {
   border-radius: 25px;
   font-size: 16px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .nav-notification-badge {
@@ -66,26 +64,10 @@ body {
   box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
 }
 
-.nav-links a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.5s;
-}
-
-.nav-links a:hover::before {
-  left: 100%;
-}
-
 .nav-links a:hover {
   background: rgba(255,255,255,0.15);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .nav-links a.active {
@@ -101,7 +83,7 @@ body {
   filter: brightness(1.1);
 }
 
-/* Main Container with Silverish Background */
+/* Main Container */
 .account-container {
   max-width: 800px;
   margin: 30px auto;
@@ -111,7 +93,6 @@ body {
   box-shadow: 
     0 20px 40px rgba(0,0,0,0.1),
     inset 0 1px 0 rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
 }
 
 .notifications-header {
@@ -128,26 +109,30 @@ body {
   color: #2c1810;
   font-size: 32px;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.notification-badge {
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-  color: white;
-  border-radius: 50%;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  min-width: 24px;
-  text-align: center;
-  animation: pulse 2s infinite;
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+.nav-notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border-radius: 50%;
+    width: 22px;           
+    height: 22px;        
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
 }
+
 
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); }
-  50% { transform: scale(1.1); box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6); }
-  100% { transform: scale(1); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .notification-controls {
@@ -160,7 +145,6 @@ body {
   padding: 20px;
   background: rgba(255,255,255,0.3);
   border-radius: 15px;
-  backdrop-filter: blur(5px);
 }
 
 .filter-buttons {
@@ -176,33 +160,15 @@ body {
   color: #2c1810;
   border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   font-weight: 600;
   font-size: 14px;
-  position: relative;
-  overflow: hidden;
-}
-
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
-}
-
-.filter-btn:hover::before {
-  left: 100%;
 }
 
 .filter-btn:hover {
   background: #3d2317;
   color: white;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(61, 35, 23, 0.3);
 }
 
 .filter-btn.active {
@@ -223,26 +189,9 @@ body {
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   background: linear-gradient(135deg, #2c1810 0%, #3d2317 100%);
   color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.control-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.control-btn:hover::before {
-  left: 100%;
 }
 
 .control-btn:hover {
@@ -252,10 +201,6 @@ body {
 
 .control-btn.danger {
   background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-}
-
-.control-btn.danger:hover {
-  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
 }
 
 /* Notification List */
@@ -269,35 +214,15 @@ body {
   background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
   border-radius: 15px;
   padding: 25px;
-  box-shadow: 
-    0 10px 30px rgba(0,0,0,0.1),
-    inset 0 1px 0 rgba(255,255,255,0.8);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
   position: relative;
-  overflow: hidden;
   border: 1px solid rgba(255,255,255,0.3);
-}
-
-.notification-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.8s;
-}
-
-.notification-card:hover::before {
-  left: 100%;
 }
 
 .notification-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,0.15),
-    0 0 30px rgba(139, 69, 19, 0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .notification-header {
@@ -315,10 +240,6 @@ body {
   margin-bottom: 10px;
   font-weight: bold;
   color: white;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
-  text-align: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
@@ -332,6 +253,10 @@ body {
 
 .reminder {
   background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+}
+
+.order {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
 }
 
 .notification-actions {
@@ -353,7 +278,6 @@ body {
   border-radius: 8px;
   transition: all 0.2s ease;
   font-size: 16px;
-  backdrop-filter: blur(5px);
 }
 
 .action-btn:hover {
@@ -391,29 +315,21 @@ body {
   font-weight: 500;
 }
 
-.priority-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.priority-high {
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-}
-
-.priority-medium {
-  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-}
-
-.priority-low {
-  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-}
-
 .notification-card.unread {
   border-left: 5px solid #8b4513;
   background: linear-gradient(145deg, #fffef7 0%, #f9f8f0 100%);
+  animation: newNotification 0.5s ease;
+}
+
+@keyframes newNotification {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .notification-card.read {
@@ -432,6 +348,33 @@ body {
   font-weight: 500;
 }
 
+/* Cafe location in order notifications */
+.order-cafe {
+  margin: 8px 0;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e6f2ff 100%);
+  border-radius: 8px;
+  color: #0066cc;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #cce5ff;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+  transition: all 0.3s ease;
+}
+
+.order-cafe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
+}
+
+.order-cafe::before {
+  content: '📍';
+  font-size: 16px;
+}
+
 /* Toast Notifications */
 .toast {
   position: fixed;
@@ -443,7 +386,7 @@ body {
   font-weight: 600;
   z-index: 1000;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s ease;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
@@ -505,3 +448,4 @@ body {
     opacity: 1;
   }
 }
+
