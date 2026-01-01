@@ -5,14 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../../role.html";
         return;
     }
-
     loadUserProfile(currentUser);
     populateFormFields(currentUser);
     setupEventListeners();
 });
 
 function getCurrentUser() {
-    const userStr = localStorage.getItem('currentUser');
+    const userStr = localStorage.getItem('currentCafeUser');
     return userStr ? JSON.parse(userStr) : null;
 }
 
@@ -23,7 +22,6 @@ function loadUserProfile(user) {
     const infoEmail = document.getElementById("infoEmail");
     const profileImg = document.getElementById("profileImg");
 
-    // Get stored data or use user data as fallback
     const ownerName = localStorage.getItem("ownerName") || user.username || "Cafe Owner";
     const ownerPhone = localStorage.getItem("ownerPhone") || user.phone || "Not set";
     const ownerEmail = localStorage.getItem("ownerEmail") || user.email || "Not set";
@@ -38,7 +36,6 @@ function loadUserProfile(user) {
 }
 
 function populateFormFields(user) {
-    // Pre-fill form fields with existing data
     const fullNameInput = document.getElementById("fullName");
     const phoneInput = document.getElementById("phone");
     const emailInput = document.getElementById("email");
@@ -93,13 +90,13 @@ function handleProfileUpdate(event) {
         localStorage.setItem("ownerEmail", email);
     }
 
-    // Update the currentUser object in localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // Update currentCafeUser object
+    const currentUser = JSON.parse(localStorage.getItem('currentCafeUser'));
     if (currentUser) {
         if (name) currentUser.username = name;
         if (email) currentUser.email = email;
         if (phone) currentUser.phone = phone;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('currentCafeUser', JSON.stringify(currentUser));
     }
 
     alert("Profile updated successfully ✅");
@@ -108,7 +105,7 @@ function handleProfileUpdate(event) {
 function handleLogout() {
     if (confirm("Are you sure you want to logout?")) {
         localStorage.removeItem('loggedIn');
-        localStorage.removeItem('currentUser');
-        window.location.href = "../../role.html";
+        localStorage.removeItem('currentCafeUser');
+        window.location.href = "../Landing-page.html";
     }
 }

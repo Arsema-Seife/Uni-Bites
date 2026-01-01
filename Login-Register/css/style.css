@@ -51,9 +51,12 @@ body {
     max-width: 800px;
     height: 500px;
     overflow: hidden;
-    box-shadow: 0 25px 60px rgba(62, 58, 58, 0.35);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    /* background: var(--bg-accent); */
      background: linear-gradient(135deg, #e2c2b3 10%,#2c1810 50%, #3d2317 100%);
-    border-radius: 12px;
+   
+
+    border-radius: 12px
 }
 
 /* =====================

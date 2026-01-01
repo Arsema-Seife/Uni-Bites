@@ -27,54 +27,6 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
-
-/* NAVBAR */
-.nav {
-    background: var(--secondary);
-    padding: 16px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.nav-logo img {
-    width: 40px;
-    height: 40px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: .3s;
-}
-
-.nav-links a:hover {
-    background: var(--accent);
-    color: var(--secondary);
-}
-
-.nav-links a.active {
-    background: #D4B3A7;
-    color: var(--secondary);
-}
-
 /* HEADER */
 .cafe-main {
     padding: 30px 0;
