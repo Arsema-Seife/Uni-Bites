@@ -5,14 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../../role.html";
         return;
     }
-
     loadUserProfile(currentUser);
     populateFormFields(currentUser);
     setupEventListeners();
 });
 
 function getCurrentUser() {
-    const userStr = localStorage.getItem('currentUser');
+    const userStr = localStorage.getItem('currentAdminUser');
     return userStr ? JSON.parse(userStr) : null;
 }
 
@@ -23,7 +22,6 @@ function loadUserProfile(user) {
     const infoEmail = document.getElementById("infoEmail");
     const profileImg = document.getElementById("profileImg");
 
-    // Get stored data or use user data as fallback
     const adminName = localStorage.getItem("adminName") || user.username || "Admin User";
     const adminPhone = localStorage.getItem("adminPhone") || user.phone || "Not set";
     const adminEmail = localStorage.getItem("adminEmail") || user.email || "admin@unibites.com";
@@ -38,7 +36,6 @@ function loadUserProfile(user) {
 }
 
 function populateFormFields(user) {
-    // Pre-fill form fields with existing data
     const fullNameInput = document.getElementById("fullName");
     const phoneInput = document.getElementById("phone");
     const emailInput = document.getElementById("email");
@@ -93,13 +90,13 @@ function handleProfileUpdate(event) {
         localStorage.setItem("adminEmail", email);
     }
 
-    // Update the currentUser object in localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // Update currentAdminUser object
+    const currentUser = JSON.parse(localStorage.getItem('currentAdminUser'));
     if (currentUser) {
         if (name) currentUser.username = name;
         if (email) currentUser.email = email;
         if (phone) currentUser.phone = phone;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('currentAdminUser', JSON.stringify(currentUser));
     }
 
     alert("Profile updated successfully ✅");
@@ -108,7 +105,7 @@ function handleProfileUpdate(event) {
 function handleLogout() {
     if (confirm("Are you sure you want to logout?")) {
         localStorage.removeItem('loggedIn');
-        localStorage.removeItem('currentUser');
-        window.location.href = "../../role.html";
+        localStorage.removeItem('currentAdminUser');
+        window.location.href = "../Landing-page.html";
     }
 }
