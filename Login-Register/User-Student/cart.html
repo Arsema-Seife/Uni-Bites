@@ -18,8 +18,8 @@
         <div class="nav-links">
             <a  href="index.html">Home</a>
             <a  href="menu.html">Menu</a>
-            <a  href="orders.html">Order</a>
-            <a  class="active" href="cart.html">Cart</a>
+            <a  href="orders.html">Order <span id="orderBadge" class="order-badge">0</span></a>
+            <a  class="active" href="cart.html">Cart <span id="cartBadge" class="cart-badge">0</span></a>
             <a  href="notification.html">Notifications</a>
             <a href="account.html">Account</a>
         </div>
@@ -32,11 +32,43 @@
           <!-- Cart items will be loaded here -->
         </div>
 
+        <!-- Cart Actions Bar -->
+        <div id="cartActions" class="cart-actions" style="display: none;">
+            <button id="clearCartBtn" class="clear-cart-btn">🗑️ Clear All</button>
+            <button id="saveForLaterBtn" class="save-later-btn">💾 Save for Later</button>
+        </div>
+
     <div id="emptyCart" class="empty-cart">
-        <div class="empty-icon">🛒</div>
-        <h2>Your cart is empty</h2>
-        <p>Add some delicious items from our menu to get started!</p>
-        <button class="browse-btn">Browse Menu</button>
+    
+
+        <!-- Main Empty Cart Content -->
+        <div class="empty-content">
+            <div class="empty-icon-container">
+                <div class="empty-icon animated-icon">🛒</div>
+                <div class="icon-shadow"></div>
+            </div>
+            
+            <h2>Your cart is empty</h2>
+            <p>Add some delicious items from our menu to get started!</p>
+
+            <!-- Saved Cart Section -->
+            <div id="savedCartSection" class="saved-cart-section phone-section" style="display: none;">
+                <h4>Saved Cart Available</h4>
+                <div class="saved-cart-info">
+                    <p>You have a saved cart from earlier!</p>
+                    <button id="restoreSavedCartBtn" class="restore-cart-btn">📥 Restore Saved Cart</button>
+                </div>
+            </div>
+
+            <!-- Browse Menu Button -->
+            <button class="browse-btn">Browse Menu</button>
+
+            <!-- Fun Fact -->
+            <div class="fun-fact">
+                <span class="fact-icon">💡</span>
+                <span class="fact-text" id="funFactText">Did you know? The average student orders 3 times per week!</span>
+            </div>
+        </div>
     </div>
 
     <div id="cartSummary" class="cart-summary" style="display: none">
@@ -51,7 +83,10 @@
               placeholder="Special instructions (optional)"
             ></textarea>
 
-            <button id="checkoutBtn" class="checkout-btn">Place Order</button>
+            <button id="checkoutBtn" class="checkout-btn">
+              <span class="btn-text">Place Order</span>
+              <span class="btn-loader" style="display: none;">⏳ Processing...</span>
+            </button>
           </div>
         </div>
       </div>
