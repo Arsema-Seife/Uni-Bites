@@ -1,114 +1,119 @@
+/* LOGIN / REGISTER TOGGLE */
+document.addEventListener('DOMContentLoaded', function() {
+    const authWrapper = document.querySelector('.auth-wrapper');
+    const loginTrigger = document.querySelector('.login-trigger');
+    const registerTrigger = document.querySelector('.register-trigger');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
 
-// =======================
-// LOGIN / REGISTER TOGGLE
-// =======================
-const authWrapper = document.querySelector('.auth-wrapper');
-const loginTrigger = document.querySelector('.login-trigger');
-const registerTrigger = document.querySelector('.register-trigger');
+    if (registerTrigger && authWrapper) {
+        registerTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            authWrapper.classList.add('toggled');
+        });
+    }
 
-if (loginTrigger && registerTrigger && authWrapper) {
-    registerTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        authWrapper.classList.add('toggled');
-    });
+    if (loginTrigger && authWrapper) {
+        loginTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            authWrapper.classList.remove('toggled');
+        });
+    }
 
-    loginTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        authWrapper.classList.remove('toggled');
-    });
-}
+    updateFormTitles();
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    if (registerForm) registerForm.addEventListener('submit', handleRegister);
+});
 
-// =======================
-// OPTIONAL: Role detection
-// =======================
-// Example: if you want to display role-specific headings
-const role = localStorage.getItem('userRole');
-if (role) {
-    const titleSignin = document.querySelector('.credentials-panel.signin h2');
-    const titleSignup = document.querySelector('.credentials-panel.signup h2');
+function updateFormTitles() {
+    const role = localStorage.getItem('userRole');
+    if (!role) return;
 
-    if (titleSignin && titleSignup) {
-        if (role === 'student') {
-            titleSignin.textContent = "Student Login";
-            titleSignup.textContent = "Student Register";
-        }
-        if (role === 'cafe') {
-            titleSignin.textContent = "Cafe Login";
-            titleSignup.textContent = "Cafe Register";
-        }
-        if (role === 'admin') {
-            titleSignin.textContent = "Admin Login";
-            titleSignup.textContent = "Admin Register";
-        }
+    const loginTitle = document.querySelector('.credentials-panel.signin h2');
+    const registerTitle = document.querySelector('.credentials-panel.signup h2');
+    const titles = {
+        student: { login: 'Student Login', register: 'Student Register' },
+        cafe: { login: 'Cafe Owner Login', register: 'Cafe Owner Register' },
+        admin: { login: 'Admin Login', register: 'Admin Register' }
+    };
+
+    if (titles[role]) {
+        if (loginTitle) loginTitle.textContent = titles[role].login;
+        if (registerTitle) registerTitle.textContent = titles[role].register;
     }
 }
-// =======================
-// FORM SUBMISSION HANDLER
-// =======================
-function loginUser() {
-    const role = localStorage.getItem("userRole");
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+function handleLogin(event) {
+    event.preventDefault();
+    const role = localStorage.getItem('userRole');
+    if (!role) {
+        alert('Please select a role first');
+        window.location.href = 'role.html';
+        return;
+    }
 
-    const user = users.find(
-        u => u.username === username &&
-             u.password === password &&
-             u.role === role
-    );
+    const form = event.target;
+    const username = form.querySelector('input[type="text"]')?.value.trim();
+    const password = form.querySelector('input[type="password"]')?.value.trim();
+    
+    if (!username || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.username === username && u.password === password && u.role === role);
 
     if (!user) {
-        alert("Invalid login credentials");
+        alert('Invalid login credentials');
         return;
     }
 
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("role", role);
-
+    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(user));
     redirectByRole(role);
 }
 
-function registerUser() {
-    const role = localStorage.getItem("userRole");
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email")?.value || "";
-    const password = document.getElementById("password").value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const exists = users.some(
-        u => u.username === username && u.role === role
-    );
-
-    if (exists) {
-        alert("User already exists");
+function handleRegister(event) {
+    event.preventDefault();
+    const role = localStorage.getItem('userRole');
+    if (!role) {
+        alert('Please select a role first');
+        window.location.href = 'role.html';
         return;
     }
 
-    users.push({ username, email, password, role });
-    localStorage.setItem("users", JSON.stringify(users));
+    const form = event.target;
+    const username = form.querySelector('input[type="text"]')?.value.trim();
+    const email = form.querySelector('input[type="email"]')?.value.trim();
+    const password = form.querySelector('input[type="password"]')?.value.trim();
+    
+    if (!username || !password) {
+        alert('Please fill in required fields');
+        return;
+    }
 
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("role", role);
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.find(u => u.username === username && u.role === role)) {
+        alert('Username already exists');
+        return;
+    }
 
+    const newUser = { username, email, password, role, createdAt: new Date().toISOString() };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    
+    alert('Registration successful!');
     redirectByRole(role);
 }
+
 function redirectByRole(role) {
-    if (role === "student") {
-        window.location.href = "User-Student/index.html";
-    } else if (role === "cafe") {
-        window.location.href = "User-Cafe/index.html";
-    } else if (role === "admin") {
-        window.location.href = "User-Admin/index.html";
-    }
+    const paths = {
+        student: 'User-Student/index.html',
+        cafe: 'User-Cafe/cafe-home.html',
+        admin: 'User-Admin/Admin-home.html'
+    };
+    window.location.href = paths[role] || 'role.html';
 }
-document.getElementById("loginForm")?.addEventListener("submit", e => {
-    e.preventDefault();
-    loginUser();
-});
-
-document.getElementById("registerForm")?.addEventListener("submit", e => {
-    e.preventDefault();
-    registerUser();
-});

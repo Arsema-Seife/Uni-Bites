@@ -1,51 +1,87 @@
-// Exactly same JS logic as student-account.js
-// Change localStorage keys to admin-specific
-
+/* ADMIN ACCOUNT MANAGEMENT */
 document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+        window.location.href = "../../index.html";
+        return;
+    }
 
-  const form = document.getElementById("profileForm");
-  const avatarInput = document.getElementById("avatarUpload");
-  const profileImg = document.getElementById("profileImg");
+    loadUserProfile(currentUser);
+    setupEventListeners();
+});
 
-  const profileName = document.getElementById("profileName");
-  const profilePhone = document.getElementById("profilePhone");
+function getCurrentUser() {
+    const userStr = localStorage.getItem('currentUser');
+    return userStr ? JSON.parse(userStr) : null;
+}
 
-  const infoPhone = document.getElementById("infoPhone");
-  const infoEmail = document.getElementById("infoEmail");
+function loadUserProfile(user) {
+    const profileName = document.getElementById("profileName");
+    const profilePhone = document.getElementById("profilePhone");
+    const infoPhone = document.getElementById("infoPhone");
+    const infoEmail = document.getElementById("infoEmail");
+    const profileImg = document.getElementById("profileImg");
 
-  // Load saved data
-  if (localStorage.getItem("adminName")) profileName.textContent = localStorage.getItem("adminName");
-  if (localStorage.getItem("adminPhone")) profilePhone.textContent = localStorage.getItem("adminPhone");
-  if (localStorage.getItem("adminEmail")) infoEmail.textContent = localStorage.getItem("adminEmail");
-  if (localStorage.getItem("adminPhone")) infoPhone.textContent = localStorage.getItem("adminPhone");
-  if (localStorage.getItem("adminAvatar")) profileImg.src = localStorage.getItem("adminAvatar");
+    if (profileName) profileName.textContent = localStorage.getItem("adminName") || user.username;
+    if (profilePhone) profilePhone.textContent = localStorage.getItem("adminPhone") || "Not set";
+    if (infoPhone) infoPhone.textContent = localStorage.getItem("adminPhone") || "Not set";
+    if (infoEmail) infoEmail.textContent = localStorage.getItem("adminEmail") || user.email || "Not set";
+    if (profileImg && localStorage.getItem("adminAvatar")) profileImg.src = localStorage.getItem("adminAvatar");
+}
 
-  avatarInput.addEventListener("change", () => {
-    const file = avatarInput.files[0];
+function setupEventListeners() {
+    const form = document.getElementById("profileForm");
+    const avatarInput = document.getElementById("avatarUpload");
+    const logoutBtn = document.querySelector(".logout");
+
+    if (avatarInput) avatarInput.addEventListener("change", handleAvatarUpload);
+    if (form) form.addEventListener("submit", handleProfileUpdate);
+    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+}
+
+function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
-    reader.onload = () => {
-      profileImg.src = reader.result;
-      localStorage.setItem("adminAvatar", reader.result);
+    reader.onload = function(e) {
+        const profileImg = document.getElementById("profileImg");
+        if (profileImg) {
+            profileImg.src = e.target.result;
+            localStorage.setItem("adminAvatar", e.target.result);
+        }
     };
-    if (file) reader.readAsDataURL(file);
-  });
+    reader.readAsDataURL(file);
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("fullName").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
+function handleProfileUpdate(event) {
+    event.preventDefault();
+    const name = document.getElementById("fullName")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
 
-    if (name) { profileName.textContent = name; localStorage.setItem("adminName", name); }
-    if (phone) { profilePhone.textContent = phone; infoPhone.textContent = phone; localStorage.setItem("adminPhone", phone); }
-    if (email) { infoEmail.textContent = email; localStorage.setItem("adminEmail", email); }
+    if (name) {
+        document.getElementById("profileName").textContent = name;
+        localStorage.setItem("adminName", name);
+    }
+    if (phone) {
+        document.getElementById("profilePhone").textContent = phone;
+        document.getElementById("infoPhone").textContent = phone;
+        localStorage.setItem("adminPhone", phone);
+    }
+    if (email) {
+        document.getElementById("infoEmail").textContent = email;
+        localStorage.setItem("adminEmail", email);
+    }
 
     alert("Profile updated successfully ✅");
-  });
+    event.target.reset();
+}
 
-  document.querySelector(".logout").addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "index.html";
-  });
-
-});
+function handleLogout() {
+    if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('currentUser');
+        window.location.href = "../../index.html";
+    }
+}
