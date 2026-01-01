@@ -1,14 +1,15 @@
 body {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color:linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 50%, #c0c0c0 100%);
+  background: linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 50%, #c0c0c0 100%);
   min-height: 100vh;
 }
 
+/* Dark Brown Navigation */
 .nav {
- background: linear-gradient(135deg, #2c1810 0%, #3d2317 50%, #4a2a1a 100%);
-  padding: 16px 40px; 
+  background: linear-gradient(135deg, #2c1810 0%, #3d2317 50%, #4a2a1a 100%);
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,9 +20,8 @@ body {
   z-index: 100;
 }
 
-
 .nav-logo {
-  display:flex;
+  display: flex;
   align-items: center;
   gap: 12px;
   font-size: 22px;
@@ -42,7 +42,9 @@ body {
   border-radius: 25px;
   font-size: 16px;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2,1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-notification-badge {
@@ -80,14 +82,14 @@ body {
 }
 
 .nav-links a:hover {
-  background:rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.15);
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .nav-links a.active {
-  background-color: #D4B3A7;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
 }
@@ -99,6 +101,7 @@ body {
   filter: brightness(1.1);
 }
 
+/* Main Container with Silverish Background */
 .account-container {
   max-width: 800px;
   margin: 30px auto;
@@ -160,7 +163,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-filter-buttons {
+.filter-buttons {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -452,43 +455,53 @@ filter-buttons {
   background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
 }
 
-.notif-type:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav {
+    padding: 12px 20px;
+  }
+  
+  .nav-logo {
+    font-size: 18px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .account-container {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .notifications-header h1 {
+    font-size: 24px;
+  }
+  
+  .notification-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-buttons {
+    justify-content: center;
+  }
+  
+  .action-buttons {
+    justify-content: center;
+  }
+  
+  .notification-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .notification-actions {
+    opacity: 1;
+  }
 }
-
-
-.notif-type:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-}
-
-.notification-card h3 {
-  margin: 5px 0;
-  color: #403234;
-}
-
-.notification-card p {
-  color: #5a4b47;
-  line-height: 1.6;
-}
-
-.notification-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(64,50,52,0.3), 0 0 15px rgba(255, 215, 150, 0.3);
-}
-
-.notif-time {
-  font-size: 12px;
-  color: #726a6a;
-}
-.notification-card + .notification-card {
-  border-top: 1px solid #e0d4ca;
-  padding-top: 20px;
-}
-
-
-
-
-
-
