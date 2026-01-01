@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../../index.html";
         return;
     }
-
     loadUserProfile(currentUser);
     setupEventListeners();
 });
 
 function getCurrentUser() {
-    const userStr = localStorage.getItem('currentUser');
+    const userStr = localStorage.getItem('currentStudentUser');
     return userStr ? JSON.parse(userStr) : null;
 }
 
@@ -74,6 +73,15 @@ function handleProfileUpdate(event) {
         localStorage.setItem("studentEmail", email);
     }
 
+    // Update currentStudentUser object
+    const currentUser = JSON.parse(localStorage.getItem('currentStudentUser'));
+    if (currentUser) {
+        if (name) currentUser.username = name;
+        if (email) currentUser.email = email;
+        if (phone) currentUser.phone = phone;
+        localStorage.setItem('currentStudentUser', JSON.stringify(currentUser));
+    }
+
     alert("Profile updated successfully ✅");
     event.target.reset();
 }
@@ -81,7 +89,7 @@ function handleProfileUpdate(event) {
 function handleLogout() {
     if (confirm("Are you sure you want to logout?")) {
         localStorage.removeItem('loggedIn');
-        localStorage.removeItem('currentUser');
-        window.location.href = "../../role.html";
+        localStorage.removeItem('currentStudentUser');
+        window.location.href = "../Landing-page.html";
     }
 }

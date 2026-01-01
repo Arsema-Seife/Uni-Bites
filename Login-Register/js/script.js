@@ -104,7 +104,7 @@ function handleLogin(event) {
         
         const user = { username, password, role: 'admin', email: 'admin@unibites.com' };
         localStorage.setItem('loggedIn', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentAdminUser', JSON.stringify(user));
         
         // Set admin profile data
         localStorage.setItem('adminName', username);
@@ -125,14 +125,15 @@ function handleLogin(event) {
     }
 
     localStorage.setItem('loggedIn', 'true');
-    localStorage.setItem('currentUser', JSON.stringify(user));
     
     // Set role-specific profile data on login
     if (role === 'student') {
+        localStorage.setItem('currentStudentUser', JSON.stringify(user));
         localStorage.setItem('studentName', user.username);
         localStorage.setItem('studentEmail', user.email || 'Not set');
         localStorage.setItem('studentPhone', user.phone || 'Not set');
     } else if (role === 'cafe') {
+        localStorage.setItem('currentCafeUser', JSON.stringify(user));
         localStorage.setItem('ownerName', user.username);
         localStorage.setItem('ownerEmail', user.email || 'Not set');
         localStorage.setItem('ownerPhone', user.phone || 'Not set');
@@ -174,14 +175,15 @@ function handleRegister(event) {
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('loggedIn', 'true');
-    localStorage.setItem('currentUser', JSON.stringify(newUser));
     
     // Set role-specific profile data on registration
     if (role === 'student') {
+        localStorage.setItem('currentStudentUser', JSON.stringify(newUser));
         localStorage.setItem('studentName', username);
         localStorage.setItem('studentEmail', email || 'Not set');
         localStorage.setItem('studentPhone', 'Not set');
     } else if (role === 'cafe') {
+        localStorage.setItem('currentCafeUser', JSON.stringify(newUser));
         localStorage.setItem('ownerName', username);
         localStorage.setItem('ownerEmail', email || 'Not set');
         localStorage.setItem('ownerPhone', 'Not set');
