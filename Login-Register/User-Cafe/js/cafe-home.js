@@ -7,8 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   });
 
-  document.querySelectorAll(".btn.ready").forEach(btn => {
-    btn.onclick = () => alert("Order marked as READY");
+
+ document.querySelectorAll(".btn.ready").forEach(btn => {
+    btn.onclick = () => {
+      btn.textContent = "Ready";
+      btn.disabled = true;
+    };
   });
 
   document.querySelectorAll(".btn.done").forEach(btn => {
