@@ -11,7 +11,8 @@ body{
     justify-content:space-between;
     align-items:center;
     color:white}
-.nav-logo{display:flex; 
+.nav-logo{
+    display:flex; 
     align-items:center;
     gap:10px;
     font-size:20px;

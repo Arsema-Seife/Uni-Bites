@@ -188,23 +188,23 @@ class ShoppingCart {
     const orderNotes = document.getElementById("orderNotes").value;
 
     if (this.cart.length === 0) {
-      alert("Your cart is empty");
-      return;
+        alert("Your cart is empty");
+        return;
     }
 
     // Create order
     const order = {
-      id: `ORD-${Date.now()}`,
-      items: [...this.cart],
-      subtotal: this.cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      ),
-
-      notes: orderNotes,
-      status: "pending",
-      timestamp: new Date().toISOString(),
-      customerName: "Student User", // In a real app, this would come from user authentication
+        id: `ORD-${Date.now()}`,
+        items: [...this.cart],
+        subtotal: this.cart.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+        ),
+        notes: orderNotes,
+        status: "pending",
+        timestamp: new Date().toISOString(),
+        customerName: "Student User", // In a real app, this would come from user authentication
+        cafe: this.cart[0]?.cafe || "unknown" // Get cafe from first item
     };
 
     // Save order to localStorage (in a real app, this would be sent to a server)
@@ -214,10 +214,15 @@ class ShoppingCart {
 
     // Also save to cafe dashboard orders
     let cafeOrders = JSON.parse(
-      localStorage.getItem("cafeDashboardOrders") || "[]"
+        localStorage.getItem("cafeDashboardOrders") || "[]"
     );
     cafeOrders.push(order);
     localStorage.setItem("cafeDashboardOrders", JSON.stringify(cafeOrders));
+
+    // Trigger order notification if notification.js is loaded
+    if (window.addOrderNotification) {
+        window.addOrderNotification(order);
+    }
 
     // Clear cart
     this.cart = [];
@@ -228,9 +233,9 @@ class ShoppingCart {
 
     // Redirect to orders page after a delay
     setTimeout(() => {
-      window.location.href = "orders.html";
+        window.location.href = "orders.html";
     }, 3000);
-  }
+}
 
   showOrderConfirmation(order) {
     const confirmation = document.createElement("div");

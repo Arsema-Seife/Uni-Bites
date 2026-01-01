@@ -1,19 +1,13 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll(".hero-image img, .Cafe-card img").forEach(img => {
+    img.style.transition = "transform 0.4s ease, box-shadow 0.4s ease";
 
-  // Order Now button
-  const orderBtn = document.querySelector(".hero-button");
-  if (orderBtn) {
-    orderBtn.onclick = () => {
-      alert("Please login to place an order");
-    };
-  }
+    img.addEventListener("mouseenter", () => {
+        img.style.transform = "scale(1.05)";
+        img.style.boxShadow = "0 8px 20px rgba(0,0,0,0.2)";
+    });
 
-  // Cafe cards click
-  document.querySelectorAll(".Cafe-card").forEach(card => {
-    card.onclick = () => {
-      alert("Cafe menu page coming soon");
-    };
-  });
-
+    img.addEventListener("mouseleave", () => {
+        img.style.transform = "scale(1)";
+        img.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)";
+    });
 });
-
