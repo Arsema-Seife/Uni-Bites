@@ -1,114 +1,201 @@
+/* PREDEFINED ADMIN USERS - Only these 6 can access admin */
+const ADMIN_USERS = [
+    { username: 'anket', password: '12345678' },
+    { username: 'bami', password: '12345678' },
+    { username: 'barki', password: '12345678' },
+    { username: 'mamo', password: '12345678' },
+    { username: 'emma', password: '12345678' },
+    { username: 'barkot', password: '12345678' }
+];
 
-// =======================
-// LOGIN / REGISTER TOGGLE
-// =======================
-const authWrapper = document.querySelector('.auth-wrapper');
-const loginTrigger = document.querySelector('.login-trigger');
-const registerTrigger = document.querySelector('.register-trigger');
+/* LOGIN / REGISTER TOGGLE */
+document.addEventListener('DOMContentLoaded', function() {
+    const authWrapper = document.querySelector('.auth-wrapper');
+    const loginTrigger = document.querySelector('.login-trigger');
+    const registerTrigger = document.querySelector('.register-trigger');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
 
-if (loginTrigger && registerTrigger && authWrapper) {
-    registerTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        authWrapper.classList.add('toggled');
-    });
+    if (registerTrigger && authWrapper) {
+        registerTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            authWrapper.classList.add('toggled');
+        });
+    }
 
-    loginTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        authWrapper.classList.remove('toggled');
-    });
-}
+    if (loginTrigger && authWrapper) {
+        loginTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            authWrapper.classList.remove('toggled');
+        });
+    }
 
-// =======================
-// OPTIONAL: Role detection
-// =======================
-// Example: if you want to display role-specific headings
-const role = localStorage.getItem('userRole');
-if (role) {
-    const titleSignin = document.querySelector('.credentials-panel.signin h2');
-    const titleSignup = document.querySelector('.credentials-panel.signup h2');
+    updateFormTitles();
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    if (registerForm) registerForm.addEventListener('submit', handleRegister);
+});
 
-    if (titleSignin && titleSignup) {
-        if (role === 'student') {
-            titleSignin.textContent = "Student Login";
-            titleSignup.textContent = "Student Register";
-        }
-        if (role === 'cafe') {
-            titleSignin.textContent = "Cafe Login";
-            titleSignup.textContent = "Cafe Register";
-        }
-        if (role === 'admin') {
-            titleSignin.textContent = "Admin Login";
-            titleSignup.textContent = "Admin Register";
-        }
+function updateFormTitles() {
+    const role = localStorage.getItem('userRole');
+    if (!role) return;
+
+    const loginTitle = document.querySelector('.credentials-panel.signin h2');
+    const registerTitle = document.querySelector('.credentials-panel.signup h2');
+    const titles = {
+        student: { login: 'Student Login', register: 'Student Register' },
+        cafe: { login: 'Cafe Owner Login', register: 'Cafe Owner Register' },
+        admin: { login: 'Admin Login', register: 'Admin Register' }
+    };
+
+    if (titles[role]) {
+        if (loginTitle) loginTitle.textContent = titles[role].login;
+        if (registerTitle) registerTitle.textContent = titles[role].register;
     }
 }
-// =======================
-// FORM SUBMISSION HANDLER
-// =======================
-function loginUser() {
-    const role = localStorage.getItem("userRole");
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+function getFormInputs(form) {
+    const role = localStorage.getItem('userRole');
+    let username, password, email;
 
-    const user = users.find(
-        u => u.username === username &&
-             u.password === password &&
-             u.role === role
-    );
+    if (role === 'student') {
+        // Student forms use first text input as name, password input as ID
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    } else if (role === 'cafe') {
+        // Cafe forms use first text input as cafe name, password input as password
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    } else if (role === 'admin') {
+        // Admin forms use text input as username, password input as password
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    }
+
+    return { username, password, email };
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const role = localStorage.getItem('userRole');
+    if (!role) {
+        alert('Please select a role first');
+        window.location.href = 'role.html';
+        return;
+    }
+
+    const form = event.target;
+    const { username, password } = getFormInputs(form);
+    
+    if (!username || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    // Special handling for admin users
+    if (role === 'admin') {
+        const adminUser = ADMIN_USERS.find(admin => admin.username === username && admin.password === password);
+        if (!adminUser) {
+            alert('Invalid admin credentials or unauthorized access');
+            return;
+        }
+        
+        const user = { username, password, role: 'admin', email: 'admin@unibites.com' };
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        
+        // Set admin profile data
+        localStorage.setItem('adminName', username);
+        localStorage.setItem('adminEmail', 'admin@unibites.com');
+        localStorage.setItem('adminPhone', 'Not set');
+        
+        redirectByRole(role);
+        return;
+    }
+
+    // Regular user login for students and cafe owners
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.username === username && u.password === password && u.role === role);
 
     if (!user) {
-        alert("Invalid login credentials");
+        alert('Invalid login credentials');
         return;
     }
 
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("role", role);
-
+    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    
+    // Set role-specific profile data on login
+    if (role === 'student') {
+        localStorage.setItem('studentName', user.username);
+        localStorage.setItem('studentEmail', user.email || 'Not set');
+        localStorage.setItem('studentPhone', user.phone || 'Not set');
+    } else if (role === 'cafe') {
+        localStorage.setItem('ownerName', user.username);
+        localStorage.setItem('ownerEmail', user.email || 'Not set');
+        localStorage.setItem('ownerPhone', user.phone || 'Not set');
+    }
+    
     redirectByRole(role);
 }
 
-function registerUser() {
-    const role = localStorage.getItem("userRole");
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email")?.value || "";
-    const password = document.getElementById("password").value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const exists = users.some(
-        u => u.username === username && u.role === role
-    );
-
-    if (exists) {
-        alert("User already exists");
+function handleRegister(event) {
+    event.preventDefault();
+    const role = localStorage.getItem('userRole');
+    if (!role) {
+        alert('Please select a role first');
+        window.location.href = 'role.html';
         return;
     }
 
-    users.push({ username, email, password, role });
-    localStorage.setItem("users", JSON.stringify(users));
+    // Block admin registration
+    if (role === 'admin') {
+        alert('Admin registration is not allowed. Only predefined admin accounts can access the system.');
+        return;
+    }
 
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("role", role);
+    const form = event.target;
+    const { username, password, email } = getFormInputs(form);
+    
+    if (!username || !password) {
+        alert('Please fill in required fields');
+        return;
+    }
 
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.find(u => u.username === username && u.role === role)) {
+        alert('Username already exists for this role');
+        return;
+    }
+
+    const newUser = { username, email: email || '', password, role, createdAt: new Date().toISOString() };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    
+    // Set role-specific profile data on registration
+    if (role === 'student') {
+        localStorage.setItem('studentName', username);
+        localStorage.setItem('studentEmail', email || 'Not set');
+        localStorage.setItem('studentPhone', 'Not set');
+    } else if (role === 'cafe') {
+        localStorage.setItem('ownerName', username);
+        localStorage.setItem('ownerEmail', email || 'Not set');
+        localStorage.setItem('ownerPhone', 'Not set');
+    }
+    
+    alert('Registration successful!');
     redirectByRole(role);
 }
+
 function redirectByRole(role) {
-    if (role === "student") {
-        window.location.href = "User-Student/index.html";
-    } else if (role === "cafe") {
-        window.location.href = "User-Cafe/index.html";
-    } else if (role === "admin") {
-        window.location.href = "User-Admin/index.html";
-    }
+    const paths = {
+        student: 'User-Student/index.html',
+        cafe: 'User-Cafe/cafe-home.html',
+        admin: 'User-Admin/Admin-home.html'
+    };
+    window.location.href = paths[role] || 'role.html';
 }
-document.getElementById("loginForm")?.addEventListener("submit", e => {
-    e.preventDefault();
-    loginUser();
-});
-
-document.getElementById("registerForm")?.addEventListener("submit", e => {
-    e.preventDefault();
-    registerUser();
-});
