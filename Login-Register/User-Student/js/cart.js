@@ -35,12 +35,12 @@ class ShoppingCart {
 
   loadCart() {
     const savedCart = localStorage.getItem("uniBitesCart");
-    console.log('Loading cart from localStorage:', savedCart);
+    console.log("Loading cart from localStorage:", savedCart);
     if (savedCart) {
       this.cart = JSON.parse(savedCart);
-      console.log('Parsed cart:', this.cart);
+      console.log("Parsed cart:", this.cart);
     } else {
-      console.log('No saved cart found');
+      console.log("No saved cart found");
     }
   }
 
@@ -49,44 +49,42 @@ class ShoppingCart {
   }
 
   displayCart() {
-    console.log('displayCart called, cart contents:', this.cart);
+    console.log("displayCart called, cart contents:", this.cart);
     const cartItemsContainer = document.getElementById("cartItems");
     const emptyCartContainer = document.getElementById("emptyCart");
     const cartSummaryContainer = document.getElementById("cartSummary");
 
-    console.log('Cart elements found:', {
+    console.log("Cart elements found:", {
       cartItems: !!cartItemsContainer,
       emptyCart: !!emptyCartContainer,
-      cartSummary: !!cartSummaryContainer
+      cartSummary: !!cartSummaryContainer,
     });
 
     if (this.cart.length === 0) {
-      console.log('Cart is empty, showing empty state');
+      console.log("Cart is empty, showing empty state");
       cartItemsContainer.style.display = "none";
       cartSummaryContainer.style.display = "none";
       emptyCartContainer.style.display = "block";
-      
+
       // Hide cart actions when empty
       const cartActions = document.getElementById("cartActions");
       if (cartActions) cartActions.style.display = "none";
-      
+
       // Start simple interactive features for empty cart
       setTimeout(() => {
         initCartIcon();
-        initFloatingFood();
         initFunFacts();
-        initTooltips();
         initSavedCart();
       }, 500);
-      
+
       return;
     }
 
-    console.log('Cart has items, showing cart content');
+    console.log("Cart has items, showing cart content");
     emptyCartContainer.style.display = "none";
     cartItemsContainer.style.display = "block";
     cartSummaryContainer.style.display = "block";
-    
+
     // Show cart actions when cart has items
     const cartActions = document.getElementById("cartActions");
     if (cartActions) cartActions.style.display = "flex";
@@ -137,7 +135,7 @@ class ShoppingCart {
 
     // Update summary
     this.updateSummary();
-    
+
     // Initialize cart actions
     setTimeout(() => {
       initCartActions();
@@ -316,11 +314,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // Simple cart icon click interaction
 function initCartIcon() {
-  const cartIcon = document.querySelector('.empty-icon, .animated-icon');
+  const cartIcon = document.querySelector(".empty-icon, .animated-icon");
   if (cartIcon) {
-    cartIcon.addEventListener('click', () => {
+    cartIcon.addEventListener("click", () => {
       if (window.shoppingCart) {
-        shoppingCart.showNotification("🛒 Add some delicious items to get started!");
+        shoppingCart.showNotification(
+          "🛒 Add some delicious items to get started!"
+        );
       }
     });
   }
@@ -331,90 +331,90 @@ function initFunFacts() {
     "Did you know? Students order 3x per week!",
     "Fun fact: Coffee is our most popular item!",
     "Did you know? We serve 200+ students daily!",
-    "Fun fact: Fastest delivery was 8 minutes!"
+    "Fun fact: Fastest delivery was 8 minutes!",
   ];
-  
-  const factElement = document.getElementById('funFactText');
-  const funFactContainer = document.querySelector('.fun-fact');
-  
+
+  const factElement = document.getElementById("funFactText");
+  const funFactContainer = document.querySelector(".fun-fact");
+
   if (factElement && funFactContainer) {
     let currentFact = 0;
-    
+
     // Auto change every 2.5 seconds
     setInterval(() => {
       currentFact = (currentFact + 1) % facts.length;
       factElement.textContent = facts[currentFact];
     }, 2500);
-    
+
     // Click to change instantly
-    funFactContainer.addEventListener('click', () => {
+    funFactContainer.addEventListener("click", () => {
       currentFact = (currentFact + 1) % facts.length;
       factElement.textContent = facts[currentFact];
-      funFactContainer.style.transform = 'scale(0.95)';
-      setTimeout(() => funFactContainer.style.transform = 'scale(1)', 150);
+      funFactContainer.style.transform = "scale(0.95)";
+      setTimeout(() => (funFactContainer.style.transform = "scale(1)"), 150);
     });
   }
 }
 
 // Initialize when empty cart is shown
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initFunFacts, 500);
 });
 // Simple cart actions
 function initCartActions() {
-  const clearBtn = document.getElementById('clearCartBtn');
-  const saveBtn = document.getElementById('saveForLaterBtn');
-  
+  const clearBtn = document.getElementById("clearCartBtn");
+  const saveBtn = document.getElementById("saveForLaterBtn");
+
   if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      if (confirm('Clear all items from cart?')) {
+    clearBtn.addEventListener("click", () => {
+      if (confirm("Clear all items from cart?")) {
         shoppingCart.cart = [];
         shoppingCart.saveCart();
         shoppingCart.displayCart();
-        shoppingCart.showNotification('🗑️ Cart cleared!');
+        shoppingCart.showNotification("🗑️ Cart cleared!");
       }
     });
   }
-  
+
   if (saveBtn) {
-    saveBtn.addEventListener('click', () => {
-      localStorage.setItem('savedCart', JSON.stringify(shoppingCart.cart));
-      shoppingCart.showNotification('💾 Cart saved for later!');
+    saveBtn.addEventListener("click", () => {
+      localStorage.setItem("savedCart", JSON.stringify(shoppingCart.cart));
+      shoppingCart.showNotification("💾 Cart saved for later!");
     });
   }
 }
 
 // Initialize cart actions when cart has items
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initCartActions, 500);
 });
 // Simple saved cart functionality
 function initSavedCart() {
-  const savedCartSection = document.getElementById('savedCartSection');
-  const restoreBtn = document.getElementById('restoreSavedCartBtn');
-  
+  const savedCartSection = document.getElementById("savedCartSection");
+  const restoreBtn = document.getElementById("restoreSavedCartBtn");
+
   // Check if there's a saved cart
-  const savedCart = localStorage.getItem('savedCart');
+  const savedCart = localStorage.getItem("savedCart");
   if (savedCart && JSON.parse(savedCart).length > 0) {
-    savedCartSection.style.display = 'block';
+    savedCartSection.style.display = "block";
   }
-  
+
   // Restore saved cart
   if (restoreBtn) {
-    restoreBtn.addEventListener('click', () => {
-      const saved = localStorage.getItem('savedCart');
+    restoreBtn.addEventListener("click", () => {
+      const saved = localStorage.getItem("savedCart");
       if (saved) {
         shoppingCart.cart = JSON.parse(saved);
         shoppingCart.saveCart();
         shoppingCart.displayCart();
-        shoppingCart.showNotification('📥 Saved cart restored!');
-        localStorage.removeItem('savedCart'); // Clear saved cart after restore
+        shoppingCart.showNotification("📥 Saved cart restored!");
+        localStorage.removeItem("savedCart"); // Clear saved cart after restore
       }
     });
   }
 }
 
 // Initialize saved cart when empty cart is shown
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initSavedCart, 600);
 });
