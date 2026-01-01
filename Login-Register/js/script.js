@@ -1,3 +1,13 @@
+/* PREDEFINED ADMIN USERS - Only these 6 can access admin */
+const ADMIN_USERS = [
+    { username: 'anket', password: '12345678' },
+    { username: 'bami', password: '12345678' },
+    { username: 'barki', password: '12345678' },
+    { username: 'mamo', password: '12345678' },
+    { username: 'emma', password: '12345678' },
+    { username: 'barkot', password: '12345678' }
+];
+
 /* LOGIN / REGISTER TOGGLE */
 document.addEventListener('DOMContentLoaded', function() {
     const authWrapper = document.querySelector('.auth-wrapper');
@@ -43,6 +53,30 @@ function updateFormTitles() {
     }
 }
 
+function getFormInputs(form) {
+    const role = localStorage.getItem('userRole');
+    let username, password, email;
+
+    if (role === 'student') {
+        // Student forms use first text input as name, password input as ID
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    } else if (role === 'cafe') {
+        // Cafe forms use first text input as cafe name, password input as password
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    } else if (role === 'admin') {
+        // Admin forms use text input as username, password input as password
+        username = form.querySelector('input[type="text"]')?.value.trim();
+        password = form.querySelector('input[type="password"]')?.value.trim();
+        email = form.querySelector('input[type="email"]')?.value.trim();
+    }
+
+    return { username, password, email };
+}
+
 function handleLogin(event) {
     event.preventDefault();
     const role = localStorage.getItem('userRole');
@@ -53,14 +87,35 @@ function handleLogin(event) {
     }
 
     const form = event.target;
-    const username = form.querySelector('input[type="text"]')?.value.trim();
-    const password = form.querySelector('input[type="password"]')?.value.trim();
+    const { username, password } = getFormInputs(form);
     
     if (!username || !password) {
         alert('Please fill in all fields');
         return;
     }
 
+    // Special handling for admin users
+    if (role === 'admin') {
+        const adminUser = ADMIN_USERS.find(admin => admin.username === username && admin.password === password);
+        if (!adminUser) {
+            alert('Invalid admin credentials or unauthorized access');
+            return;
+        }
+        
+        const user = { username, password, role: 'admin', email: 'admin@unibites.com' };
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        
+        // Set admin profile data
+        localStorage.setItem('adminName', username);
+        localStorage.setItem('adminEmail', 'admin@unibites.com');
+        localStorage.setItem('adminPhone', 'Not set');
+        
+        redirectByRole(role);
+        return;
+    }
+
+    // Regular user login for students and cafe owners
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find(u => u.username === username && u.password === password && u.role === role);
 
@@ -71,6 +126,18 @@ function handleLogin(event) {
 
     localStorage.setItem('loggedIn', 'true');
     localStorage.setItem('currentUser', JSON.stringify(user));
+    
+    // Set role-specific profile data on login
+    if (role === 'student') {
+        localStorage.setItem('studentName', user.username);
+        localStorage.setItem('studentEmail', user.email || 'Not set');
+        localStorage.setItem('studentPhone', user.phone || 'Not set');
+    } else if (role === 'cafe') {
+        localStorage.setItem('ownerName', user.username);
+        localStorage.setItem('ownerEmail', user.email || 'Not set');
+        localStorage.setItem('ownerPhone', user.phone || 'Not set');
+    }
+    
     redirectByRole(role);
 }
 
@@ -83,10 +150,14 @@ function handleRegister(event) {
         return;
     }
 
+    // Block admin registration
+    if (role === 'admin') {
+        alert('Admin registration is not allowed. Only predefined admin accounts can access the system.');
+        return;
+    }
+
     const form = event.target;
-    const username = form.querySelector('input[type="text"]')?.value.trim();
-    const email = form.querySelector('input[type="email"]')?.value.trim();
-    const password = form.querySelector('input[type="password"]')?.value.trim();
+    const { username, password, email } = getFormInputs(form);
     
     if (!username || !password) {
         alert('Please fill in required fields');
@@ -95,15 +166,26 @@ function handleRegister(event) {
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     if (users.find(u => u.username === username && u.role === role)) {
-        alert('Username already exists');
+        alert('Username already exists for this role');
         return;
     }
 
-    const newUser = { username, email, password, role, createdAt: new Date().toISOString() };
+    const newUser = { username, email: email || '', password, role, createdAt: new Date().toISOString() };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('loggedIn', 'true');
     localStorage.setItem('currentUser', JSON.stringify(newUser));
+    
+    // Set role-specific profile data on registration
+    if (role === 'student') {
+        localStorage.setItem('studentName', username);
+        localStorage.setItem('studentEmail', email || 'Not set');
+        localStorage.setItem('studentPhone', 'Not set');
+    } else if (role === 'cafe') {
+        localStorage.setItem('ownerName', username);
+        localStorage.setItem('ownerEmail', email || 'Not set');
+        localStorage.setItem('ownerPhone', 'Not set');
+    }
     
     alert('Registration successful!');
     redirectByRole(role);

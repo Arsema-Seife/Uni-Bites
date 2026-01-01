@@ -82,6 +82,6 @@ function handleLogout() {
     if (confirm("Are you sure you want to logout?")) {
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('currentUser');
-        window.location.href = "../../index.html";
+        window.location.href = "../../role.html";
     }
 }

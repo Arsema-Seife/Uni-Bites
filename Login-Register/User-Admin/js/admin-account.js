@@ -2,11 +2,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const currentUser = getCurrentUser();
     if (!currentUser) {
-        window.location.href = "../../index.html";
+        window.location.href = "../../role.html";
         return;
     }
 
     loadUserProfile(currentUser);
+    populateFormFields(currentUser);
     setupEventListeners();
 });
 
@@ -22,11 +23,29 @@ function loadUserProfile(user) {
     const infoEmail = document.getElementById("infoEmail");
     const profileImg = document.getElementById("profileImg");
 
-    if (profileName) profileName.textContent = localStorage.getItem("adminName") || user.username;
-    if (profilePhone) profilePhone.textContent = localStorage.getItem("adminPhone") || "Not set";
-    if (infoPhone) infoPhone.textContent = localStorage.getItem("adminPhone") || "Not set";
-    if (infoEmail) infoEmail.textContent = localStorage.getItem("adminEmail") || user.email || "Not set";
-    if (profileImg && localStorage.getItem("adminAvatar")) profileImg.src = localStorage.getItem("adminAvatar");
+    // Get stored data or use user data as fallback
+    const adminName = localStorage.getItem("adminName") || user.username || "Admin User";
+    const adminPhone = localStorage.getItem("adminPhone") || user.phone || "Not set";
+    const adminEmail = localStorage.getItem("adminEmail") || user.email || "admin@unibites.com";
+
+    if (profileName) profileName.textContent = adminName;
+    if (profilePhone) profilePhone.textContent = adminPhone;
+    if (infoPhone) infoPhone.textContent = adminPhone;
+    if (infoEmail) infoEmail.textContent = adminEmail;
+    if (profileImg && localStorage.getItem("adminAvatar")) {
+        profileImg.src = localStorage.getItem("adminAvatar");
+    }
+}
+
+function populateFormFields(user) {
+    // Pre-fill form fields with existing data
+    const fullNameInput = document.getElementById("fullName");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+
+    if (fullNameInput) fullNameInput.value = localStorage.getItem("adminName") || user.username || "";
+    if (phoneInput) phoneInput.value = localStorage.getItem("adminPhone") || user.phone || "";
+    if (emailInput) emailInput.value = localStorage.getItem("adminEmail") || user.email || "";
 }
 
 function setupEventListeners() {
@@ -74,14 +93,22 @@ function handleProfileUpdate(event) {
         localStorage.setItem("adminEmail", email);
     }
 
+    // Update the currentUser object in localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+        if (name) currentUser.username = name;
+        if (email) currentUser.email = email;
+        if (phone) currentUser.phone = phone;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    }
+
     alert("Profile updated successfully ✅");
-    event.target.reset();
 }
 
 function handleLogout() {
     if (confirm("Are you sure you want to logout?")) {
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('currentUser');
-        window.location.href = "../../index.html";
+        window.location.href = "../../role.html";
     }
 }
