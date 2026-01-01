@@ -11,12 +11,6 @@
     --link-color: #403234;
 }
 
-/* DARK MODE = SWAP COLORS */
-body.dark-mode {
-    --bg-main: #403234;     
-    --bg-accent: #e2c2b3;   
-    --link-color: #e2c2b3;
-}
 
 /* =====================
    RESET
@@ -301,20 +295,7 @@ body {
     transform: rotate(0) skewY(0);
 }
 
-.secondary-shape {
-    position: absolute;
-    left: 250px;
-    top: 100%;
-    width: 850px;
-    height: 700px;
-    background: var(--bg-accent);
-    border-top: 3px solid #025531;
-    transition: 1.5s ease;
-}
 
-.auth-wrapper.toggled .secondary-shape {
-    transform: rotate(-11deg) skewY(-41deg);
-}
 
 /* =====================
    RESPONSIVE
