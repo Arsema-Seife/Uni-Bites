@@ -297,32 +297,6 @@ h2 {
     color: #666;
     line-height: 1.5;
 }
-/* GET STARTED BUTTON */
-.get-started-container {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.get-started-btn {
-    padding: 14px 40px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: var(--secondary-color);
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 30px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.get-started-btn:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
-    color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-}
-
 
 /* FOOTER */
 footer {
